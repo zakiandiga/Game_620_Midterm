@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System; //Zak added this line!
 
 public class DialogueManager : MonoBehaviour
 {
@@ -11,7 +12,10 @@ public class DialogueManager : MonoBehaviour
 
     public Animator animator; 
 
-    private Queue<string> sentences; 
+    private Queue<string> sentences;
+
+    //Zak added this line!
+    public static event Action<DialogueManager> OnEndDialogue;
 
     void Start()
     {
@@ -62,6 +66,12 @@ public class DialogueManager : MonoBehaviour
     void EndDialogue()
     {
         animator.SetBool("IsOpen", false);
+
+        //Zak added this line
+        if (OnEndDialogue != null)
+        {
+            OnEndDialogue(this);
+        }
         //Debug.Log("End of conversation.");
     }
 }

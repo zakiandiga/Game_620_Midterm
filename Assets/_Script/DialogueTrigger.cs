@@ -2,12 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class DialogueTrigger : MonoBehaviour
 {
-    public Dialogue dialogue;  
+    public Dialogue dialogue;
+    //[SerializeField]GameObject thisNPC;
 
-    public void TriggerDialogue()
+    void Start()
     {
+        //Zak added this line
+        NpcBehavior.OnTalkStart += TriggerDialogue;
+        //thisNPC = this.GameObject;
+    }
+
+    public void TriggerDialogue(NpcBehavior npc)//Zak added this parameter! check your trigger button!
+    {
+
+        //Debug.Log("Notified from NPC" + thisNPC.name); //Zak also added this
         FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
     }
 }

@@ -8,12 +8,15 @@ public class NpcBehavior : MonoBehaviour
 {
     [SerializeField] bool canTalk = false;
     GameObject sign;
+    public Dialogue dialogue;
+    PlayerInput input;
 
     public static event Action<NpcBehavior> OnTalkStart;
 
     void Start()
     {
         sign = transform.Find("Sign").gameObject;
+        input = GetComponent<PlayerInput>();
     }
 
     void OnTriggerEnter2D (Collider2D col)
@@ -46,7 +49,14 @@ public class NpcBehavior : MonoBehaviour
         {
             OnTalkStart(this);            
         }
-        
+        input.enabled = false;
+        //FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
+
+    }
+
+    private void EnabledInput()
+    {
+        input.enabled = true;
     }
 
     public void InteractInput(InputAction.CallbackContext con)

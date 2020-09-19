@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     {
         input = GetComponent<PlayerInput>();
         NpcBehavior.OnTalkStart += DisableMovement;
+        DialogueManager.OnEndDialogue += EnableMovement;
         
     }
 
@@ -23,6 +24,12 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("CONTROL DISABLED");
         input.enabled = false;
+    }
+
+    private void EnableMovement(DialogueManager d)
+    {
+        Debug.Log("CONTROL ENABLED");
+        input.enabled = true;
     }
 
     public void MoveInput(InputAction.CallbackContext con)
