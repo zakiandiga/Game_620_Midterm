@@ -68,9 +68,11 @@ public class DialogueManager : MonoBehaviour
         animator.SetBool("IsOpen", false);
 
         //Zak added this line
+        Debug.Log(gameObject.name + " notify that dialogue ends, anyone need that cue?");
         if (OnEndDialogue != null)
         {
             OnEndDialogue(this);
+            
         }
         //Debug.Log("End of conversation.");
     }

@@ -20,5 +20,6 @@ public enum NotificationType
 {
     //DialogueMode,
     //ControlMode,
+    //DialogueEnd,
 
 }
