@@ -51,10 +51,9 @@ public class NpcBehavior : MonoBehaviour
         //Notify UI that talk happen
         if (OnTalkStart != null)
         {
-            OnTalkStart(this);
-            
-            
+            OnTalkStart(this);           
         }
+
         dialogueTrigger.TriggerDialogue(this);
         input.enabled = false;
         //FindObjectOfType<DialogueManager>().StartDialogue(dialogue);

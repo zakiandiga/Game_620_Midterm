@@ -44,3 +44,6 @@ TagManager:
   - name: Characters
     uniqueID: 3410847643
     locked: 0
+  - name: Sign
+    uniqueID: 2983401957
+    locked: 0
