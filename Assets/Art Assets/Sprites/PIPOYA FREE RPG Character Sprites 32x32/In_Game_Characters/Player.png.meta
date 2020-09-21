@@ -80,6 +80,39 @@ TextureImporter:
   - first:
       213: -5319882733741912588
     second: Player_11
+  - first:
+      213: 7365574002475698461
+    second: Player_12
+  - first:
+      213: 8654590631379428793
+    second: Player_2
+  - first:
+      213: 2104903475122899212
+    second: Player_3
+  - first:
+      213: 1550346661786639224
+    second: Player_4
+  - first:
+      213: -2137104641423072030
+    second: Player_5
+  - first:
+      213: -2913840584061128028
+    second: Player_6
+  - first:
+      213: -1314552440241993024
+    second: Player_7
+  - first:
+      213: -4547419369343004713
+    second: Player_8
+  - first:
+      213: 1926431759985454781
+    second: Player_9
+  - first:
+      213: 8845860978411747880
+    second: Player_10
+  - first:
+      213: 5020063464885657153
+    second: Player_11
   externalObjects: {}
   serializedVersion: 11
   mipmaps:

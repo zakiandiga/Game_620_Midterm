@@ -16,6 +16,7 @@ public class DialogueManager : MonoBehaviour
 
     //Zak added this line!
     public static event Action<DialogueManager> OnEndDialogue;
+    public static event Action<DialogueManager> OnStartDialogue;
 
     void Start()
     {
@@ -38,6 +39,15 @@ public class DialogueManager : MonoBehaviour
         }
 
         DisplayNextSentence();
+
+        //Zak added this line
+        Debug.Log(gameObject.name + " Guys! Dialogue is starting, everyone please be quiet!");
+        if (OnStartDialogue != null)
+        {
+            
+            OnStartDialogue(this);
+
+        }
     }
 
     public void DisplayNextSentence()
@@ -71,6 +81,7 @@ public class DialogueManager : MonoBehaviour
         Debug.Log(gameObject.name + " notify that dialogue ends, anyone need that cue?");
         if (OnEndDialogue != null)
         {
+            sentences.Clear(); //Jocelyn added this line
             OnEndDialogue(this);
             
         }

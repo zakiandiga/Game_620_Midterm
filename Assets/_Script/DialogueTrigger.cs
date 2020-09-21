@@ -11,7 +11,7 @@ public class DialogueTrigger : MonoBehaviour
     void Start()
     {
         //Zak added this line
-        NpcBehavior.OnTalkStart += TriggerDialogue;
+        //NpcBehavior.OnTalkStart += TriggerDialogue;
         //thisNPC = this.GameObject;
     }
 
@@ -20,5 +20,6 @@ public class DialogueTrigger : MonoBehaviour
 
         //Debug.Log("Notified from NPC" + thisNPC.name); //Zak also added this
         FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
+        
     }
 }

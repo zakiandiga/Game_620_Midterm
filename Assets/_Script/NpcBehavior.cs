@@ -10,6 +10,7 @@ public class NpcBehavior : MonoBehaviour
     GameObject sign;
     //public Dialogue dialogue;
     PlayerInput input;
+    DialogueTrigger dialogueTrigger;
 
     public static event Action<NpcBehavior> OnTalkStart;
 
@@ -17,7 +18,10 @@ public class NpcBehavior : MonoBehaviour
     {
         sign = transform.Find("Sign").gameObject;
         input = GetComponent<PlayerInput>();
-        DialogueManager.OnEndDialogue += EnabledInput;
+        DialogueManager.OnEndDialogue += EnableInput;
+        DialogueManager.OnStartDialogue += DisableInput;
+        dialogueTrigger = GetComponent<DialogueTrigger>();
+        
     }
 
     void OnTriggerEnter2D (Collider2D col)
@@ -47,15 +51,23 @@ public class NpcBehavior : MonoBehaviour
         //Notify UI that talk happen
         if (OnTalkStart != null)
         {
-           OnTalkStart(this);
+            OnTalkStart(this);
+            
             
         }
+        dialogueTrigger.TriggerDialogue(this);
         input.enabled = false;
         //FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
 
     }
 
-    private void EnabledInput(DialogueManager d)
+    private void DisableInput(DialogueManager d)
+    {
+        Debug.Log(gameObject.name + " Alright DialogueManager, we disable our Player Input!");
+        input.enabled = false;
+    }
+
+    private void EnableInput(DialogueManager d)
     {
         Debug.Log(gameObject.name + " read notif from dialogue manager, we can initiate talk again");
         input.enabled = true;
