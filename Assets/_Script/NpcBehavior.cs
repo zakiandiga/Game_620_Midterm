@@ -6,42 +6,41 @@ using System;
 
 public class NpcBehavior : MonoBehaviour
 {
-    [SerializeField] bool canTalk = false;
     GameObject sign;
     //public Dialogue dialogue;
     PlayerInput input;
     DialogueTrigger dialogueTrigger;
+    private NPCMode npcMode = NPCMode.notTalking;
 
-    public static event Action<NpcBehavior> OnTalkStart;
+    public static event Action<NpcBehavior> OnTalkStart; //Announce if the NPC innitiate a talk at Talk()
 
     void Start()
     {
         sign = transform.Find("Sign").gameObject;
         input = GetComponent<PlayerInput>();
-        DialogueManager.OnEndDialogue += EnableInput;
-        DialogueManager.OnStartDialogue += DisableInput;
-        dialogueTrigger = GetComponent<DialogueTrigger>();
+        DialogueManager.OnEndDialogue += EnableInput; //Observe if the dialogue ends, enable input
+        DialogueManager.OnStartDialogue += DisableInput; //Observe if the dialogue starts, disable input
+        dialogueTrigger = GetComponent<DialogueTrigger>(); //this GameObject's dialogue trigger
         
     }
 
     void OnTriggerEnter2D (Collider2D col)
     {
-        if(col.gameObject.tag == "Player")
+        if(col.gameObject.tag == "Player" && npcMode == NPCMode.notTalking)
         {
-            Debug.Log(gameObject.name + " ready to talk!");
+            npcMode = NPCMode.readyToTalk;
             sign.SetActive(true);
-            canTalk = true;
-            //SHOW THE TALK BUTTON... somewhere?
+            Debug.Log(gameObject.name + " ready to talk!");            
         }
     }
 
     void OnTriggerExit2D (Collider2D col)
     {
-        if (col.gameObject.tag == "Player")
+        if (col.gameObject.tag == "Player" && npcMode == NPCMode.readyToTalk)
         {
             Debug.Log(gameObject.name + " player too far to talk");
-            sign.SetActive(false);
-            canTalk = false;
+            npcMode = NPCMode.notTalking;
+            sign.SetActive(false);            
         }
     }
 
@@ -55,9 +54,7 @@ public class NpcBehavior : MonoBehaviour
         }
 
         dialogueTrigger.TriggerDialogue(this);
-        input.enabled = false;
-        //FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
-
+        input.enabled = false;        
     }
 
     private void DisableInput(DialogueManager d)
@@ -74,15 +71,17 @@ public class NpcBehavior : MonoBehaviour
 
     public void InteractInput(InputAction.CallbackContext con)
     {
-        if (con.started)
+        if (con.started && npcMode == NPCMode.readyToTalk)
         {
-            if (canTalk)
-            {
-                Talk();
-                //Debug.Log(gameObject.name + " calling Talk() function");
-
-            }
+            Talk();
         }
+    }
+
+    public enum NPCMode
+    {
+        readyToTalk, 
+        notTalking, 
+        offended
     }
 
 }

@@ -15,8 +15,8 @@ public class DialogueManager : MonoBehaviour
     private Queue<string> sentences;
 
     //Zak added this line!
-    public static event Action<DialogueManager> OnEndDialogue;
-    public static event Action<DialogueManager> OnStartDialogue;
+    public static event Action<DialogueManager> OnEndDialogue; //Announce if dialogue ends at EndDialogue()
+    public static event Action<DialogueManager> OnStartDialogue; //Announce if dialogue start at StartDialogue()
 
     void Start()
     {

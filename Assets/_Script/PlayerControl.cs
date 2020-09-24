@@ -20,7 +20,7 @@ public class @PlayerControl : IInputActionCollection, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Interact"",
-                    ""type"": ""Value"",
+                    ""type"": ""Button"",
                     ""id"": ""cc7ef3fd-cda6-41d3-9782-3c1538062758"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
@@ -187,7 +187,7 @@ public class @PlayerControl : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""95d1ed0a-dd87-47a7-8718-aa4c38c35ba7"",
-                    ""path"": ""<Keyboard>/enter"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
