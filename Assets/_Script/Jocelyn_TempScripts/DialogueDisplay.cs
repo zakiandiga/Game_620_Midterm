@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem; //Input System
+using System;
 
 public class DialogueDisplay : MonoBehaviour
 {
     PlayerInput input; //Input System
     public Conversation conversaiton;
+    public int blockNumber; //get this number from Conversation
 
     public GameObject speakerLeft;
     public GameObject speakerRight;
@@ -15,6 +17,8 @@ public class DialogueDisplay : MonoBehaviour
     private SpeakerUI speakerUIRight;
 
     private int activeLineIndex = 0;
+
+    public static event Action<DialogueDisplay> OnEndConvo;
 
     void Start()
     {
@@ -93,6 +97,16 @@ public class DialogueDisplay : MonoBehaviour
         input.enabled = false;
         speakerLeft.SetActive(false);
         speakerRight.SetActive(false);
+        
+        if (conversaiton.endingType == "question")
+        {
+            if (OnEndConvo != null)
+            {
+                blockNumber = conversaiton.blockNumber;
+                OnEndConvo(this);
+
+            }
+        }
         //follow-up command here
         //OnEndDialogue event announce here
 

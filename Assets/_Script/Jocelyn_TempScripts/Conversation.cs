@@ -16,7 +16,13 @@ public struct Line
 [CreateAssetMenu(fileName = "New Conversation", menuName = "Conversation")]
 public class Conversation : ScriptableObject
 {
-    public int blockNumber; //Zak added this!
+    //Zak added these lines
+    public int blockNumber;
+    public string endingType;
+    //public EndingType endingType;
+    //public enum EndingType { question, quest, noFollowup }
+    //End line
+
     public Character speakerLeft;
     public Character speakerRight;
     public Line[] lines;
