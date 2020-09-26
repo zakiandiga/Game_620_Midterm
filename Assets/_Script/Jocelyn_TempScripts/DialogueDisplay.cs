@@ -12,7 +12,7 @@ public class DialogueDisplay : MonoBehaviour
     public GameObject speakerRight;
 
     private SpeakerUI speakerUILeft;
-    private SpeakerUI SpeakerUIRight;
+    private SpeakerUI speakerUIRight;
 
     private int activeLineIndex = 0;
 
@@ -20,21 +20,26 @@ public class DialogueDisplay : MonoBehaviour
     {
         input = GetComponent<PlayerInput>(); //Input System
 
+        
+
         speakerUILeft = speakerLeft.GetComponent<SpeakerUI>();
-        SpeakerUIRight = speakerRight.GetComponent<SpeakerUI>();
+        speakerUIRight = speakerRight.GetComponent<SpeakerUI>();
 
         speakerUILeft.Speaker = conversaiton.speakerLeft;
-        SpeakerUIRight.Speaker = conversaiton.speakerRight;
+        speakerUIRight.Speaker = conversaiton.speakerRight;
+        Debug.Log(conversaiton.lines[0]);
     }
     
     public void NextSentence(InputAction.CallbackContext con)
     {
-        float submitInput;
-        submitInput = con.ReadValue<float>();
-        if(submitInput == 1 )
+
+        if(con.performed)
         {
             AdvanceConversation();
         }
+        
+
+
         
     }
 
@@ -46,19 +51,51 @@ public class DialogueDisplay : MonoBehaviour
         }
     }*/
 
-    void AdvanceConversation()
+    public void StartConversation() //CALL THIS FROM THE NPC (Observe)
+    {        
+        //Zak add these line
+        input.enabled = true;
+        //OnStartDialogue event announce here
+        activeLineIndex = 0;
+        DisplayLine();
+        activeLineIndex += 1;
+        Debug.Log("On start convo, ALI is " + activeLineIndex);
+    }
+
+    public void AdvanceConversation()
     {
         if (activeLineIndex < conversaiton.lines.Length)
         {
             DisplayLine();
             activeLineIndex += 1;
+            Debug.Log("Current ALI is " + activeLineIndex);
         }
         else
         {
+            //Zak modify this
+            EndConversation();
+
+            
+            
+            /* Convo Looper
             speakerUILeft.Hide();
-            SpeakerUIRight.Hide();
+            speakerUIRight.Hide();
             activeLineIndex = 0;
+            */
         }
+    }
+    
+
+
+    void EndConversation()
+    {
+        Debug.Log("Conversation End");
+        input.enabled = false;
+        speakerLeft.SetActive(false);
+        speakerRight.SetActive(false);
+        //follow-up command here
+        //OnEndDialogue event announce here
+
     }
 
     void DisplayLine()
@@ -68,18 +105,17 @@ public class DialogueDisplay : MonoBehaviour
 
         if (speakerUILeft.SpeakerIs(character))
         {
-            SetDialogue(speakerUILeft, SpeakerUIRight, line.text);
+            SetDialogue(speakerUILeft, speakerUIRight, line.text);
         }
-        else
+        if (speakerUIRight.SpeakerIs(character))
         {
-            SetDialogue(SpeakerUIRight, speakerUILeft, line.text);
+            SetDialogue(speakerUIRight, speakerUILeft, line.text);
         }
     }
 
-    void SetDialogue(
-        SpeakerUI activeSpeakerUI,
-        SpeakerUI inactiveSpeakerUI,
-        string text)
+    void SetDialogue(SpeakerUI activeSpeakerUI, 
+                        SpeakerUI inactiveSpeakerUI,
+                        string text)
     {
         activeSpeakerUI.Dialogue = text;
         activeSpeakerUI.Show();

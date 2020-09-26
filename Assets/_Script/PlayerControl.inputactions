@@ -9,7 +9,7 @@
                     "name": "Interact",
                     "type": "Value",
                     "id": "cc7ef3fd-cda6-41d3-9782-3c1538062758",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
                 },
@@ -163,17 +163,17 @@
             "actions": [
                 {
                     "name": "Submit",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "6674ab96-5bb9-4375-974b-7e2246c2ef6d",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "Press"
                 },
                 {
                     "name": "Cancel",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "bebc36bd-62e5-419d-a728-e029019482f8",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
                 },
@@ -191,7 +191,7 @@
                     "name": "",
                     "id": "95d1ed0a-dd87-47a7-8718-aa4c38c35ba7",
                     "path": "<Keyboard>/space",
-                    "interactions": "Press",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Submit",
@@ -312,7 +312,7 @@
                     "name": "",
                     "id": "7296222b-7428-4877-9711-9917611281b7",
                     "path": "<Keyboard>/escape",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "",
                     "action": "Cancel",
