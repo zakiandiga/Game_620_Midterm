@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem; //Input System
 using System;
-using System.CodeDom;
+//using System.CodeDom;
 
 public class DialogueDisplay : MonoBehaviour
 {
@@ -13,6 +13,8 @@ public class DialogueDisplay : MonoBehaviour
 
     public GameObject speakerLeft;
     public GameObject speakerRight;
+    public GameObject questionManager;
+    QuestionManager followupQuestion;
 
     private SpeakerUI speakerUILeft;
     private SpeakerUI speakerUIRight;
@@ -26,8 +28,8 @@ public class DialogueDisplay : MonoBehaviour
     void Start()
     {
         input = GetComponent<PlayerInput>(); //Input System
+        followupQuestion = questionManager.GetComponent<QuestionManager>();
 
-        
 
         speakerUILeft = speakerLeft.GetComponent<SpeakerUI>();
         speakerUIRight = speakerRight.GetComponent<SpeakerUI>();
@@ -55,6 +57,7 @@ public class DialogueDisplay : MonoBehaviour
     public void StartConversation() //CALL THIS FROM THE NPC (Observe)
     {        
         //Zak add these line
+        //set conversaiton based on valuse from npc
         input.enabled = true;
         //OnStartDialogue event announce here
         activeLineIndex = 0;
@@ -95,8 +98,10 @@ public class DialogueDisplay : MonoBehaviour
         
         if (conversaiton.endingType == "question") //How to check with enum instead of string???
         {
-            blockNumber = conversaiton.blockNumber;
-            Debug.Log("We go to question!");
+            //blockNumber = conversaiton.blockNumber;
+            followupQuestion.questions = conversaiton.question;
+            
+            Debug.Log("We go to question! " + conversaiton.question);
             if (OnEndtoQuestion != null) //we might move this inside each ending type
             {
                 OnEndtoQuestion(this);
@@ -109,12 +114,14 @@ public class DialogueDisplay : MonoBehaviour
         if (conversaiton.endingType == "nextDialogue") //How to check with enum instead of string???
         {
             blockNumber = conversaiton.blockNumber;
+            conversaiton = conversaiton.nextConversation;
             Debug.Log("We go to next dialog!");
             if (OnEndtoDialogue != null) //we might move this inside each ending type
             {
                 OnEndtoDialogue(this);
             }
             //we actually have the follow-up dialogue block data here also
+            StartConversation();
 
 
             //make change to all global parameters (activate quest X, change NPC state, etc)
