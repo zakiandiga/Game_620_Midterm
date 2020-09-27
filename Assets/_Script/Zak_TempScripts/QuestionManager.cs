@@ -17,7 +17,7 @@ public class QuestionManager : MonoBehaviour
     [SerializeField]
     private Text factText; //reference to the text field of the question text
 
-    public Question[] questions; //List of the question blocks
+    public Question questions; //List of the question blocks
 
     void Start()
     {
@@ -31,9 +31,9 @@ public class QuestionManager : MonoBehaviour
     {
         Debug.Log("recieved msg from DialogueDisplay");
         int questionBlock = dialogueDisplay.blockNumber;
-        currentQuestion = questions[questionBlock];
+        currentQuestion = questions; //////
         questionArea.SetActive(true);
-        Debug.Log(questionBlock);
+        //Debug.Log(questionBlock);
 
         factText.text = currentQuestion.fact; //show the question to the UI        
     }
@@ -51,14 +51,20 @@ public class QuestionManager : MonoBehaviour
 
     public void UserSelectTrue() //This will lead to branch A
     {
-        Debug.Log("THE NPC LIKES YOU");
+        Debug.Log("To convo0011");
+        dialogueDisplay.conversaiton = questions.correctDestinationBlock;
+        dialogueDisplay.StartConversation();
+        questionArea.SetActive(false);
         //Define what's next!!!!!!!!!!!!!!!!!!!!!!!
         //pass the destination dialogue to the dialogue
     }
 
     public void UserSelectFalse() //This will lead to branch B
     {
-        Debug.Log("YOU MAKE THE NPC ANGRY");
+        Debug.Log("To convo0012");
+        dialogueDisplay.conversaiton = questions.wrongDestinationBlock;
+        dialogueDisplay.StartConversation();
+        questionArea.SetActive(false);
         //Define what's next!!!!!!!!!!!!!!!!!!!!!!!!!!!
         //pass the destination dialogue to the dialogue
     }

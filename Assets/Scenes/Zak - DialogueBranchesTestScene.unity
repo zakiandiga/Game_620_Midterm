@@ -1667,11 +1667,7 @@ MonoBehaviour:
   dialogue: {fileID: 1571137828}
   questionArea: {fileID: 94522915}
   factText: {fileID: 513669896}
-  questions:
-  - {fileID: 11400000, guid: 3d2a77e48b1e7844ba178fa6a01bc02b, type: 2}
-  - {fileID: 11400000, guid: 2f8cf3784c8c01646bfd57065b11ec3f, type: 2}
-  - {fileID: 11400000, guid: 2f8cf3784c8c01646bfd57065b11ec3f, type: 2}
-  - {fileID: 11400000, guid: 2f8cf3784c8c01646bfd57065b11ec3f, type: 2}
+  questions: {fileID: 11400000, guid: 3d2a77e48b1e7844ba178fa6a01bc02b, type: 2}
 --- !u!1 &1242880549
 GameObject:
   m_ObjectHideFlags: 0
@@ -2097,6 +2093,7 @@ MonoBehaviour:
   blockNumber: 0
   speakerLeft: {fileID: 2112045181}
   speakerRight: {fileID: 292040051}
+  questionManager: {fileID: 1108036519}
 --- !u!114 &1571137831
 MonoBehaviour:
   m_ObjectHideFlags: 0

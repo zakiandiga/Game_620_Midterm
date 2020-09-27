@@ -17,7 +17,7 @@ public class Question : ScriptableObject //this suppose to replace the Question.
     public Conversation correctDestinationBlock;
     public Conversation wrongDestinationBlock;
     public bool isTrue; //Might not need this
-    public EndingType endingType;
+    public EndingType endingType; //Question always end up in conversation
     //public QuestionLine[] lines;
 
     public enum EndingType { nextConvo, nothing }
