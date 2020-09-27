@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Question
   questionNumber: 2
   fact: This is the test
-  correctDestinationBlock: {fileID: 0}
-  wrongDestinationBlock: {fileID: 0}
+  correctDestinationBlock: {fileID: 11400000, guid: 7cc8716970eaa03439d86080c3fe16e9,
+    type: 2}
+  wrongDestinationBlock: {fileID: 11400000, guid: 3c50393753b3f72418290df6a091fb4c,
+    type: 2}
   isTrue: 1
   endingType: 0

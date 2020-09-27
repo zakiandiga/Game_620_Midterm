@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem; //Input System
 using System;
+using System.CodeDom;
 
 public class DialogueDisplay : MonoBehaviour
 {
@@ -18,7 +19,9 @@ public class DialogueDisplay : MonoBehaviour
 
     private int activeLineIndex = 0;
 
-    public static event Action<DialogueDisplay> OnEndConvo;
+    public static event Action<DialogueDisplay> OnEndtoQuestion;
+    public static event Action<DialogueDisplay> OnEndtoDialogue;
+    public static event Action<DialogueDisplay> OnEndtoNothing;
 
     void Start()
     {
@@ -31,20 +34,14 @@ public class DialogueDisplay : MonoBehaviour
 
         speakerUILeft.Speaker = conversaiton.speakerLeft;
         speakerUIRight.Speaker = conversaiton.speakerRight;
-        Debug.Log(conversaiton.lines[0]);
     }
     
     public void NextSentence(InputAction.CallbackContext con)
     {
-
-        if(con.performed)
+        if(con.performed) //IMPORTANT TO MAKE SURE THAT WE SEND 1 INPUT EACH CLICK!!!
         {
             AdvanceConversation();
-        }
-        
-
-
-        
+        }        
     }
 
     /*void Update()
@@ -63,7 +60,6 @@ public class DialogueDisplay : MonoBehaviour
         activeLineIndex = 0;
         DisplayLine();
         activeLineIndex += 1;
-        Debug.Log("On start convo, ALI is " + activeLineIndex);
     }
 
     public void AdvanceConversation()
@@ -72,15 +68,12 @@ public class DialogueDisplay : MonoBehaviour
         {
             DisplayLine();
             activeLineIndex += 1;
-            Debug.Log("Current ALI is " + activeLineIndex);
         }
         else
         {
             //Zak modify this
             EndConversation();
 
-            
-            
             /* Convo Looper
             speakerUILeft.Hide();
             speakerUIRight.Hide();
@@ -97,16 +90,51 @@ public class DialogueDisplay : MonoBehaviour
         input.enabled = false;
         speakerLeft.SetActive(false);
         speakerRight.SetActive(false);
-        
-        if (conversaiton.endingType == "question")
-        {
-            if (OnEndConvo != null)
-            {
-                blockNumber = conversaiton.blockNumber;
-                OnEndConvo(this);
 
+        //THE LINES FOR FOLLOW UP HANDLING
+        
+        if (conversaiton.endingType == "question") //How to check with enum instead of string???
+        {
+            blockNumber = conversaiton.blockNumber;
+            Debug.Log("We go to question!");
+            if (OnEndtoQuestion != null) //we might move this inside each ending type
+            {
+                OnEndtoQuestion(this);
             }
+            //we actually have the follow-up question data here
+
+            //make change to all global parameters that need to be changed before the question (activate quest X, change NPC state, etc)
         }
+
+        if (conversaiton.endingType == "nextDialogue") //How to check with enum instead of string???
+        {
+            blockNumber = conversaiton.blockNumber;
+            Debug.Log("We go to next dialog!");
+            if (OnEndtoDialogue != null) //we might move this inside each ending type
+            {
+                OnEndtoDialogue(this);
+            }
+            //we actually have the follow-up dialogue block data here also
+
+
+            //make change to all global parameters (activate quest X, change NPC state, etc)
+        }
+
+        if (conversaiton.endingType == "noFollowup") //How to check with enum instead of string???
+        {
+            blockNumber = conversaiton.blockNumber;
+            Debug.Log("Nothing happen on the foreground!");
+            if (OnEndtoNothing != null) //we might move this inside each ending type
+            {
+                OnEndtoNothing(this);
+            }
+            //make change to all global parameters if needed, but this endingType meant for random NPC line that have no follow-up (like offended npcs)
+            //ANNOUNCE TO ENABLE PLAYER INPUT ON PLAYER AND NPC HERE
+        }
+
+        //last thing to execute on EndConversation()
+
+
         //follow-up command here
         //OnEndDialogue event announce here
 

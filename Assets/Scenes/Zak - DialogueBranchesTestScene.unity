@@ -213,13 +213,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 94522916}
+  - component: {fileID: 94522918}
+  - component: {fileID: 94522917}
   m_Layer: 5
   m_Name: Question Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &94522916
 RectTransform:
   m_ObjectHideFlags: 0
@@ -239,9 +241,46 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 2.4000244, y: 42.5}
-  m_SizeDelta: {x: -59.331543, y: -236.52576}
+  m_AnchoredPosition: {x: 2.4000244, y: 29.1}
+  m_SizeDelta: {x: -59.331543, y: -411.02536}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &94522917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94522915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.2}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &94522918
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94522915}
+  m_CullTransparentMesh: 0
 --- !u!1 &171272893
 GameObject:
   m_ObjectHideFlags: 0
@@ -352,8 +391,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 200, y: -46}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 200, y: -56.6}
+  m_SizeDelta: {x: 160, y: 51.253143}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &233651420
 MonoBehaviour:
@@ -671,8 +710,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -223, y: -46}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -223, y: -50.5}
+  m_SizeDelta: {x: 160, y: 38.9487}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &379677510
 MonoBehaviour:
@@ -873,8 +912,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 13.5, y: 56.6}
-  m_SizeDelta: {x: 972.9584, y: 70.81796}
+  m_AnchoredPosition: {x: 13.5, y: 48.8}
+  m_SizeDelta: {x: 972.9584, y: 86.47821}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &513669896
 MonoBehaviour:
@@ -953,7 +992,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -293, y: 211}
+  m_AnchoredPosition: {x: -153, y: 211}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &636116565
@@ -1625,11 +1664,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c688654ccd2d9b4c9d563deacdf7f00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogue: {fileID: 1571137828}
+  questionArea: {fileID: 94522915}
+  factText: {fileID: 513669896}
   questions:
   - {fileID: 11400000, guid: 3d2a77e48b1e7844ba178fa6a01bc02b, type: 2}
   - {fileID: 11400000, guid: 2f8cf3784c8c01646bfd57065b11ec3f, type: 2}
-  factText: {fileID: 513669896}
-  timeBetweenQuestion: 1
+  - {fileID: 11400000, guid: 2f8cf3784c8c01646bfd57065b11ec3f, type: 2}
+  - {fileID: 11400000, guid: 2f8cf3784c8c01646bfd57065b11ec3f, type: 2}
 --- !u!1 &1242880549
 GameObject:
   m_ObjectHideFlags: 0
@@ -2051,7 +2093,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b1db22dc2b092743bd3bd660f407f53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  conversaiton: {fileID: 11400000, guid: 7cc8716970eaa03439d86080c3fe16e9, type: 2}
+  conversaiton: {fileID: 11400000, guid: f671fe9d88a30254b989771114599344, type: 2}
   blockNumber: 0
   speakerLeft: {fileID: 2112045181}
   speakerRight: {fileID: 292040051}
@@ -2401,7 +2443,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 211}
+  m_AnchoredPosition: {x: -405, y: 211}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2005748612

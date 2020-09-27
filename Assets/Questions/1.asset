@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: 1
   m_EditorClassIdentifier: Assembly-CSharp::Question
   questionNumber: 1
-  fact: Need Help?
-  correctDestinationBlock: {fileID: 0}
-  wrongDestinationBlock: {fileID: 0}
+  fact: This is our first question, Correct to 0011, Wrong to 0012
+  correctDestinationBlock: {fileID: 11400000, guid: 8d06893f879d06e4392b3c4cefb003f6,
+    type: 2}
+  wrongDestinationBlock: {fileID: 11400000, guid: 002d10cbe639edc4f8b0ba704cc0aa00,
+    type: 2}
   isTrue: 1
   endingType: 0

@@ -4,32 +4,25 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 
-
 public class QuestionManager : MonoBehaviour
 {
-    
-
-    private static List<Question> unansweredQuestions; //find alternative of list?
+    //private static List<Question> unansweredQuestions; //Not sure if we still use this
 
     public GameObject dialogue;
-    public GameObject questionArea;
-    DialogueDisplay dialogueDisplay;
+    public GameObject questionArea; //Send things to UI 
+    DialogueDisplay dialogueDisplay; //Need this reference to keep track of DialogueDisplay block number
 
     private Question currentQuestion; //Question that player will answer
 
     [SerializeField]
-    private Text factText;
+    private Text factText; //reference to the text field of the question text
 
-    [SerializeField]
-    private float timeBetweenQuestion = 1f; //we might not need this
-
-    public Question[] questions;
+    public Question[] questions; //List of the question blocks
 
     void Start()
     {
-        DialogueDisplay.OnEndConvo += SetCurrentQuestion;
-        dialogueDisplay = dialogue.GetComponent<DialogueDisplay>();      
-        
+        DialogueDisplay.OnEndtoQuestion += SetCurrentQuestion;
+        dialogueDisplay = dialogue.GetComponent<DialogueDisplay>();     
     }
 
 
@@ -40,9 +33,9 @@ public class QuestionManager : MonoBehaviour
         int questionBlock = dialogueDisplay.blockNumber;
         currentQuestion = questions[questionBlock];
         questionArea.SetActive(true);
+        Debug.Log(questionBlock);
 
-        factText.text = currentQuestion.fact; //show the question to the UI
-        
+        factText.text = currentQuestion.fact; //show the question to the UI        
     }
 
     /*
@@ -56,17 +49,18 @@ public class QuestionManager : MonoBehaviour
     }
     */
 
-    public void UserSelectTrue()
+    public void UserSelectTrue() //This will lead to branch A
     {
         Debug.Log("THE NPC LIKES YOU");
         //Define what's next!!!!!!!!!!!!!!!!!!!!!!!
+        //pass the destination dialogue to the dialogue
     }
 
-    public void UserSelectFalse() //WE DONT NEED THIS SINCE WE ONLY HAVE 1 CORRECT ANSWER
+    public void UserSelectFalse() //This will lead to branch B
     {
         Debug.Log("YOU MAKE THE NPC ANGRY");
         //Define what's next!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        
+        //pass the destination dialogue to the dialogue
     }
 
 
