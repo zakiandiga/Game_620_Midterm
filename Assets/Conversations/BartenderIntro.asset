@@ -10,35 +10,59 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0109d7e372c78ec4b8b8e34335b9c88a, type: 3}
-  m_Name: Newcomer & Bartender 1
+  m_Name: BartenderIntro
   m_EditorClassIdentifier: 
+  blockNumber: 3
+  endingType: question
   speakerLeft: {fileID: 11400000, guid: c0212193a5e5c2043a3c4ad61b9dba7b, type: 2}
   speakerRight: {fileID: 11400000, guid: 60d77d123cab0f04ca5c0b91f6ac0ba1, type: 2}
   lines:
   - character: {fileID: 11400000, guid: 60d77d123cab0f04ca5c0b91f6ac0ba1, type: 2}
+    _question: {fileID: 0}
+    nextConversation: {fileID: 0}
     text: '[Hello, I''m the bartender. Welcome to the Tavern! ]'
   - character: {fileID: 11400000, guid: 60d77d123cab0f04ca5c0b91f6ac0ba1, type: 2}
+    _question: {fileID: 0}
+    nextConversation: {fileID: 0}
     text: Oh, apologies! I didn't realize you're not from around here.
   - character: {fileID: 11400000, guid: c0212193a5e5c2043a3c4ad61b9dba7b, type: 2}
+    _question: {fileID: 0}
+    nextConversation: {fileID: 0}
     text: Yes, I'm new in town. I don't even know where to begin...
   - character: {fileID: 11400000, guid: c0212193a5e5c2043a3c4ad61b9dba7b, type: 2}
+    _question: {fileID: 0}
+    nextConversation: {fileID: 0}
     text: I can't understand anyone and they can't understand me...
   - character: {fileID: 11400000, guid: 60d77d123cab0f04ca5c0b91f6ac0ba1, type: 2}
+    _question: {fileID: 0}
+    nextConversation: {fileID: 0}
     text: 'Hmm, that is unfortunate...I know! '
   - character: {fileID: 11400000, guid: 60d77d123cab0f04ca5c0b91f6ac0ba1, type: 2}
+    _question: {fileID: 0}
+    nextConversation: {fileID: 0}
     text: If you'd like, I can teach you some words? It's not perfect, but it's a
       start.
   - character: {fileID: 11400000, guid: c0212193a5e5c2043a3c4ad61b9dba7b, type: 2}
+    _question: {fileID: 0}
+    nextConversation: {fileID: 0}
     text: That would be great!
   - character: {fileID: 11400000, guid: 60d77d123cab0f04ca5c0b91f6ac0ba1, type: 2}
+    _question: {fileID: 0}
+    nextConversation: {fileID: 0}
     text: 'Alright, let''s start with the basics. (Gives player words) '
   - character: {fileID: 11400000, guid: 60d77d123cab0f04ca5c0b91f6ac0ba1, type: 2}
+    _question: {fileID: 0}
+    nextConversation: {fileID: 0}
     text: Why don't you go try these out with some of the locals. But do be careful,
       okay?
   - character: {fileID: 11400000, guid: 60d77d123cab0f04ca5c0b91f6ac0ba1, type: 2}
+    _question: {fileID: 0}
+    nextConversation: {fileID: 0}
     text: People around here are easily offended, so you don't want to say the wrong
       thing.
   - character: {fileID: 11400000, guid: c0212193a5e5c2043a3c4ad61b9dba7b, type: 2}
+    _question: {fileID: 0}
+    nextConversation: {fileID: 0}
     text: 'Alright, I''ll give it a try! '
-  - character: {fileID: 11400000, guid: c0212193a5e5c2043a3c4ad61b9dba7b, type: 2}
-    text: End Conversation
+  question: {fileID: 0}
+  nextConversation: {fileID: 0}
