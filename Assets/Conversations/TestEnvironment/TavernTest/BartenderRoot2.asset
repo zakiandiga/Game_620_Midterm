@@ -10,24 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0109d7e372c78ec4b8b8e34335b9c88a, type: 3}
-  m_Name: Quest0001
+  m_Name: BartenderRoot2
   m_EditorClassIdentifier: 
   blockNumber: 0
-  endingType: 
-  question: {fileID: 11400000, guid: 0bdaeb335d06ba7409f75c8be09fe3b4, type: 2}
+  isQuest: 0
+  isLeveling: 0
+  endingCon: 2
+  question: {fileID: 0}
   nextConversation: {fileID: 0}
   speakerLeft: {fileID: 11400000, guid: 60d77d123cab0f04ca5c0b91f6ac0ba1, type: 2}
   speakerRight: {fileID: 11400000, guid: c0212193a5e5c2043a3c4ad61b9dba7b, type: 2}
   lines:
   - character: {fileID: 11400000, guid: 60d77d123cab0f04ca5c0b91f6ac0ba1, type: 2}
-    _question: {fileID: 11400000, guid: 3d2a77e48b1e7844ba178fa6a01bc02b, type: 2}
-    nextConversation: {fileID: 0}
-    text: 
-  - character: {fileID: 0}
-    _question: {fileID: 0}
-    nextConversation: {fileID: 0}
-    text: 
-  - character: {fileID: 0}
-    _question: {fileID: 0}
-    nextConversation: {fileID: 0}
-    text: 
+    text: Now Bartender just level up
+  - character: {fileID: 11400000, guid: 60d77d123cab0f04ca5c0b91f6ac0ba1, type: 2}
+    text: We are on root level 2
+  - character: {fileID: 11400000, guid: 60d77d123cab0f04ca5c0b91f6ac0ba1, type: 2}
+    text: That has no follow up!

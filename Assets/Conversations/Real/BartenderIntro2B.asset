@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0109d7e372c78ec4b8b8e34335b9c88a, type: 3}
+  m_Name: BartenderIntro2B
+  m_EditorClassIdentifier: 
+  blockNumber: 0
+  isQuest: 1
+  isLeveling: 1
+  endingCon: 2
+  question: {fileID: 0}
+  nextConversation: {fileID: 0}
+  speakerLeft: {fileID: 11400000, guid: c0212193a5e5c2043a3c4ad61b9dba7b, type: 2}
+  speakerRight: {fileID: 11400000, guid: 60d77d123cab0f04ca5c0b91f6ac0ba1, type: 2}
+  lines:
+  - character: {fileID: 11400000, guid: c0212193a5e5c2043a3c4ad61b9dba7b, type: 2}
+    text: It's "what's your name!", isn't it?
+  - character: {fileID: 11400000, guid: c0212193a5e5c2043a3c4ad61b9dba7b, type: 2}
+    text: Namaku, Player!
+  - character: {fileID: 11400000, guid: 60d77d123cab0f04ca5c0b91f6ac0ba1, type: 2}
+    text: Nice! Easy, right?
+  - character: {fileID: 11400000, guid: c0212193a5e5c2043a3c4ad61b9dba7b, type: 2}
+    text: But I still have a lot to learn!
+  - character: {fileID: 11400000, guid: 60d77d123cab0f04ca5c0b91f6ac0ba1, type: 2}
+    text: Yeah, but I can help you with that!
+  - character: {fileID: 11400000, guid: 60d77d123cab0f04ca5c0b91f6ac0ba1, type: 2}
+    text: Now, why don't you go try these out with some of the locals?
+  - character: {fileID: 11400000, guid: 60d77d123cab0f04ca5c0b91f6ac0ba1, type: 2}
+    text: But do be careful, okay?
+  - character: {fileID: 11400000, guid: 60d77d123cab0f04ca5c0b91f6ac0ba1, type: 2}
+    text: People around here are easily offended, so you don't want to say the wrong
+      thing.
+  - character: {fileID: 11400000, guid: c0212193a5e5c2043a3c4ad61b9dba7b, type: 2}
+    text: Alright, I'll give it a try!

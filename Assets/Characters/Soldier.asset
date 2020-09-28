@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5bc4ec3b7ed0f7f439ae802c34bc83ed, type: 3}
-  m_Name: Newcomer
+  m_Name: Soldier
   m_EditorClassIdentifier: 
-  fullName: Newcomer
-  portrait: {fileID: -2311659948842064771, guid: b40aa84f21f4baf42b0cfdea178ef375,
+  fullName: Soldier
+  portrait: {fileID: 1078029937223638718, guid: b1adee6b0d436b241a7d7567caffce57,
     type: 3}

@@ -9,13 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0109d7e372c78ec4b8b8e34335b9c88a, type: 3}
-  m_Name: Quest0002
+  m_Script: {fileID: 11500000, guid: 5bc4ec3b7ed0f7f439ae802c34bc83ed, type: 3}
+  m_Name: PurpleWitch
   m_EditorClassIdentifier: 
-  blockNumber: 0
-  endingType: 
-  speakerLeft: {fileID: 0}
-  speakerRight: {fileID: 0}
-  lines: []
-  question: {fileID: 0}
-  nextConversation: {fileID: 0}
+  fullName: Purple Witch
+  portrait: {fileID: 4981203659324124962, guid: 6d5ff1a1904be964e87f74af3b0337fc,
+    type: 3}

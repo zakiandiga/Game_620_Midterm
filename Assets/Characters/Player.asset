@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5bc4ec3b7ed0f7f439ae802c34bc83ed, type: 3}
-  m_Name: Bartender
+  m_Name: Player
   m_EditorClassIdentifier: 
-  fullName: Bartender
-  portrait: {fileID: -3375745110066833865, guid: 8c04c639b0748c742b972fb9e3fe7f72,
+  fullName: Player
+  portrait: {fileID: -2311659948842064771, guid: b40aa84f21f4baf42b0cfdea178ef375,
     type: 3}
