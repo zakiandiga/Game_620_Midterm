@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,30 +8,26 @@ using UnityEngine;
 public struct Line
 {
     public Character character;
-    //public Question _question;
-    //public Conversation nextConversation;
 
-    [TextArea(2, 5)]
-
-    public string text;
+    [TextArea(2, 5)] public string text;
 }
 
 [CreateAssetMenu(fileName = "New Conversation", menuName = "Conversation")]
 public class Conversation : ScriptableObject
 {
-    //Zak added these lines
+
     public int blockNumber;
-    public string endingType;
+    public string convoOwner; //Cheat
     public bool isQuest;
-    //public EndingType endingType;
-    //public enum EndingType { question, nextDialogue, noFollowup }
+    public bool isLeveling;
+    public bool isQuestCheck; //Cheat
+    public EndingType endingCon;
+    public enum EndingType { question, nextDialogue, noFollowup }
     public Question question;
     public Conversation nextConversation;
-    //End line
 
     public Character speakerLeft;
     public Character speakerRight;
     public Line[] lines;
 
-    
 }

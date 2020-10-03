@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0109d7e372c78ec4b8b8e34335b9c88a, type: 3}
+  m_Name: Quest0001
+  m_EditorClassIdentifier: 
+  blockNumber: 0
+  endingType: 
+  isQuest: 0
+  question: {fileID: 11400000, guid: 0bdaeb335d06ba7409f75c8be09fe3b4, type: 2}
+  nextConversation: {fileID: 0}
+  speakerLeft: {fileID: 11400000, guid: 60d77d123cab0f04ca5c0b91f6ac0ba1, type: 2}
+  speakerRight: {fileID: 11400000, guid: c0212193a5e5c2043a3c4ad61b9dba7b, type: 2}
+  lines:
+  - character: {fileID: 11400000, guid: 60d77d123cab0f04ca5c0b91f6ac0ba1, type: 2}
+    text: 
+  - character: {fileID: 0}
+    text: 
+  - character: {fileID: 0}
+    text: 

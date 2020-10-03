@@ -13,14 +13,9 @@ using UnityEngine;
 public class Question : ScriptableObject //this suppose to replace the Question.cs
 {
     public int questionNumber; //same with Conversation blockNumber!
-    public string fact;
+    [TextArea(2, 5)] public string fact;
+    public string correctAnswer;
+    public string wrongAnswer;
     public Conversation correctDestinationBlock;
     public Conversation wrongDestinationBlock;
-    public bool isTrue; //Might not need this
-    public EndingType endingType; //Question always end up in conversation
-    //public QuestionLine[] lines;
-
-    public enum EndingType { nextConvo, nothing }
-
-
 }

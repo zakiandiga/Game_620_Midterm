@@ -3,70 +3,69 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using System;
 
 public class QuestionManager : MonoBehaviour
 {
-    //private static List<Question> unansweredQuestions; //Not sure if we still use this
-
     public GameObject dialogue;
     public GameObject questionArea; //Send things to UI 
     DialogueDisplay dialogueDisplay; //Need this reference to keep track of DialogueDisplay block number
 
     private Question currentQuestion; //Question that player will answer
 
-    [SerializeField]
-    private Text factText; //reference to the text field of the question text
+    [SerializeField] private Text factText; //reference to the text field of the question text
+    //Anwser choice, we can add more if needed
+    [SerializeField] private Text correctAnswer;
+    [SerializeField] private Text wrongAnswer;
 
-    public Question questions; //List of the question blocks
+    public Question questions; //current assigned question
+
+    public static event Action<QuestionManager> OnQuestionStart;
+    public static event Action<QuestionManager> OnAnswerSelected;
 
     void Start()
     {
         DialogueDisplay.OnEndtoQuestion += SetCurrentQuestion;
-        dialogueDisplay = dialogue.GetComponent<DialogueDisplay>();     
+        dialogueDisplay = dialogue.GetComponent<DialogueDisplay>();
     }
-
-
 
     void SetCurrentQuestion(DialogueDisplay d) //change function to get specific question
     {
-        Debug.Log("recieved msg from DialogueDisplay");
+        //Debug.Log("recieved msg from DialogueDisplay");
         int questionBlock = dialogueDisplay.blockNumber;
-        currentQuestion = questions; //////
-        questionArea.SetActive(true);
-        //Debug.Log(questionBlock);
+        currentQuestion = questions; 
+        questionArea.SetActive(true);        
 
-        factText.text = currentQuestion.fact; //show the question to the UI        
+        factText.text = currentQuestion.fact; //show the question to the UI 
+        correctAnswer.text = currentQuestion.correctAnswer;
+        wrongAnswer.text = currentQuestion.wrongAnswer;
+        if(OnQuestionStart != null)
+        {
+            OnQuestionStart(this);
+        }
     }
-
-    /*
-    IEnumerator TransitionToNextQuestion()
-    {
-        unansweredQuestions.Remove(currentQuestion); //remove answered question from the list, placed here to make sure it's removed after we answer the question
-
-        yield return new WaitForSeconds (timeBetweenQuestion);
-
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); //instead of this, we will change the game state
-    }
-    */
 
     public void UserSelectTrue() //This will lead to branch A
     {
-        Debug.Log("To convo0011");
-        dialogueDisplay.conversaiton = questions.correctDestinationBlock;
+        dialogueDisplay.conversation = questions.correctDestinationBlock;
         dialogueDisplay.StartConversation();
         questionArea.SetActive(false);
-        //Define what's next!!!!!!!!!!!!!!!!!!!!!!!
-        //pass the destination dialogue to the dialogue
+        if(OnAnswerSelected != null)
+        {
+            OnAnswerSelected(this);
+
+        }
     }
 
     public void UserSelectFalse() //This will lead to branch B
     {
-        Debug.Log("To convo0012");
-        dialogueDisplay.conversaiton = questions.wrongDestinationBlock;
+        dialogueDisplay.conversation = questions.wrongDestinationBlock;
         dialogueDisplay.StartConversation();
         questionArea.SetActive(false);
-        //Define what's next!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        //pass the destination dialogue to the dialogue
+        if (OnAnswerSelected != null)
+        {
+            OnAnswerSelected(this);
+        }
     }
 
 

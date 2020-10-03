@@ -7,10 +7,12 @@ public class PlayerController : MonoBehaviour
 {
     private Vector2 inputVector = Vector2.zero;
     private Rigidbody2D rb;
+
     [SerializeField] private float speed = 20;
-    //[SerializeField] private bool isTalking = false;
+    
     PlayerInput input;
     Animator anim;
+    
     private PlayerMode playerMode = PlayerMode.walking;
 
     void Start()
@@ -19,7 +21,7 @@ public class PlayerController : MonoBehaviour
         input = GetComponent<PlayerInput>();
         anim = GetComponent<Animator>();
         NpcBehavior.OnTalkStart += DisableMovement; //Observe if an NPC start a talk, disable movement
-        DialogueManager.OnEndDialogue += EnableMovement; //Observe if dialogue ends, enable movement        
+        DialogueDisplay.OnEndtoNothing += EnableMovement;
     }
     
     public void MoveInput(InputAction.CallbackContext con)
@@ -39,14 +41,14 @@ public class PlayerController : MonoBehaviour
     private void DisableMovement(NpcBehavior npc)
     {
         playerMode = PlayerMode.talking;
-        Debug.Log(gameObject.name + " Read notif from the NPC, CONTROL DISABLED");
+        //Debug.Log(gameObject.name + " Read notif from the NPC, CONTROL DISABLED");
         input.enabled = false;
     }
 
-    private void EnableMovement(DialogueManager d)
+    private void EnableMovement(DialogueDisplay d)
     {
         playerMode = PlayerMode.walking;
-        Debug.Log(gameObject.name + "Read notif from the dialogue manager, CONTROL ENABLED");
+        //Debug.Log(gameObject.name + "Read notif from the dialogue display, CONTROL ENABLED");
         input.enabled = true;
     }
 

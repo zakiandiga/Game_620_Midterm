@@ -3,46 +3,73 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using System;
 
 public class ButtonControl : MonoBehaviour
 {
     //public GameObject dialogueBox;
-    public GameObject continueButton;
+    public GameObject questionArea;//, dialogue;
+    public GameObject nextLine, correct, wrong;
+    Button buttonNextLine, buttonCorrect, buttonWrong;
+
     PlayerInput input;
-    Button button;
 
 
     void Start()
     {
-        button = continueButton.GetComponent<Button>();
+        DialogueDisplay.OnAdvanceConvo += OnDialogueStart;
+        //DialogueDisplay.OnEndtoQuestion += OnDialogueEnd;
+        DialogueDisplay.OnEndtoNothing += OnDialogueEnd;
+        QuestionManager.OnQuestionStart += OnQuestionStart;
+        QuestionManager.OnAnswerSelected += OnQuestionEnd;
         input = GetComponent<PlayerInput>();
-    //    NpcBehavior.OnTalkStart += EnableButton;
+        buttonNextLine = nextLine.GetComponent<Button>();
+        buttonCorrect = correct.GetComponent<Button>();
+        buttonWrong = wrong.GetComponent<Button>();
+
+        //    NpcBehavior.OnTalkStart += EnableButton;
         //button.onClick.AddListener(DisplayNext);
     }
 
-    //void EnableButton(NpcBehavior npc)
-    //{
-    //    Debug.Log("continue Button input enabled");
-    //    input.enabled = false;
-    //}
-
-    //void DisableButton()
-    
-    // Update is called once per frame
-    void DisplayNext()
+    private void OnDialogueStart(DialogueDisplay d)
     {
-        Debug.Log(continueButton + " is clicked");
-        button.onClick.Invoke();
-        
+        //Debug.Log("OnDialogueStart() called");
+        input.enabled = true;
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(nextLine);
     }
 
-    //when InteractInput is pressed, display next sentence
-    public void InputNext(InputAction.CallbackContext con)
+    private void OnDialogueEnd(DialogueDisplay d)
     {
-        DisplayNext();
-                
+        //Debug.Log("OnDialogueEnd() called");
+        input.enabled = false;
+    }
+
+    private void OnQuestionStart(QuestionManager q)
+    {
+        input.enabled = true;
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(correct);
+        //Debug.Log("OnQuestionStart() called");
+    }
+
+    private void OnQuestionEnd(QuestionManager q)
+    {
+        //input.enabled = false;
+    }
+    
+    //public void OnNavigate(InputAction.CallbackContext con)
+    //{
+
+    //}
+
+    void Update()
+    {
+
+            
+
     }
 
 

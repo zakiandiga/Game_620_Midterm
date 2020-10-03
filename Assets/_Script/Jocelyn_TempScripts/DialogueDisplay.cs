@@ -3,17 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem; //Input System
 using System;
-//using System.CodeDom;
 
 public class DialogueDisplay : MonoBehaviour
 {
-    PlayerInput input; //Input System
-    public Conversation conversaiton;
+    //PlayerInput input; //Input System
+    public GameObject nextButton;
+    public GameObject dialogue;
+
+    public Conversation conversation;
     public int blockNumber; //get this number from Conversation
 
     public GameObject speakerLeft;
     public GameObject speakerRight;
     public GameObject questionManager;
+
     QuestionManager followupQuestion;
 
     private SpeakerUI speakerUILeft;
@@ -21,67 +24,66 @@ public class DialogueDisplay : MonoBehaviour
 
     private int activeLineIndex = 0;
 
-    public static event Action<DialogueDisplay> OnEndtoQuestion;
-    public static event Action<DialogueDisplay> OnEndtoDialogue;
+    public static event Action<DialogueDisplay> OnEndtoQuestion;    
     public static event Action<DialogueDisplay> OnEndtoNothing;
+    public static event Action<DialogueDisplay> OnStartConversation;
+    public static event Action<DialogueDisplay> OnEndLevelUp;
+    public static event Action<DialogueDisplay> OnAdvanceConvo;
+    public static event Action<DialogueDisplay> OnQuestStart;
+    public static event Action<DialogueDisplay> OnQuestCheck;
+
+    public static event Action<bool> QuestStatus; //Added by Drew
+
+    //public ButtonControl buttonControl;
 
     void Start()
     {
-        input = GetComponent<PlayerInput>(); //Input System
         followupQuestion = questionManager.GetComponent<QuestionManager>();
 
-
         speakerUILeft = speakerLeft.GetComponent<SpeakerUI>();
-        speakerUIRight = speakerRight.GetComponent<SpeakerUI>();
-
-        speakerUILeft.Speaker = conversaiton.speakerLeft;
-        speakerUIRight.Speaker = conversaiton.speakerRight;
+        speakerUIRight = speakerRight.GetComponent<SpeakerUI>();        
     }
     
-    public void NextSentence(InputAction.CallbackContext con)
-    {
-        if(con.performed) //IMPORTANT TO MAKE SURE THAT WE SEND 1 INPUT EACH CLICK!!!
-        {
-            AdvanceConversation();
-        }        
-    }
 
-    /*void Update()
-    {
-        if (Input.GetKeyDown("space"))
-        {
-            
-        }
-    }*/
-
+    
     public void StartConversation() //CALL THIS FROM THE NPC (Observe)
-    {        
-        //Zak add these line
-        //set conversaiton based on valuse from npc
-        input.enabled = true;
-        //OnStartDialogue event announce here
-        activeLineIndex = 0;
+    {   
+        if (OnStartConversation != null)
+        {
+            OnStartConversation(this);
+        }
+        activeLineIndex = 0; //Set the current/assigned dialogue block index to 0
+        //SetDialogue();
+
+        speakerUILeft.Speaker = conversation.speakerLeft; //Set the speaker UI
+        speakerUIRight.Speaker = conversation.speakerRight; //Set the speaker UI
+
+
+        nextButton.SetActive(true);
+        if (OnAdvanceConvo != null)
+        {
+            OnAdvanceConvo(this);
+        }
         DisplayLine();
-        activeLineIndex += 1;
+        activeLineIndex += 1;       
     }
+    
 
     public void AdvanceConversation()
     {
-        if (activeLineIndex < conversaiton.lines.Length)
+        if (activeLineIndex < conversation.lines.Length)
         {
             DisplayLine();
             activeLineIndex += 1;
+            if(OnAdvanceConvo != null)
+            {
+                OnAdvanceConvo(this);
+            }
+
         }
         else
-        {
-            //Zak modify this
+        {            
             EndConversation();
-
-            /* Convo Looper
-            speakerUILeft.Hide();
-            speakerUIRight.Hide();
-            activeLineIndex = 0;
-            */
         }
     }
     
@@ -89,67 +91,73 @@ public class DialogueDisplay : MonoBehaviour
 
     void EndConversation()
     {
-        Debug.Log("Conversation End");
-        input.enabled = false;
         speakerLeft.SetActive(false);
-        speakerRight.SetActive(false);
+        speakerRight.SetActive(false);        
+        nextButton.SetActive(false);
+        var ending = conversation.endingCon;
+        //Debug.Log(ending);
 
-        //THE LINES FOR FOLLOW UP HANDLING
-        
-        if (conversaiton.endingType == "question") //How to check with enum instead of string???
+        //THE LINES FOR THE FOLLOW UP HANDLING        
+        if (ending == Conversation.EndingType.question) //question follow-up
         {
-            //blockNumber = conversaiton.blockNumber;
-            followupQuestion.questions = conversaiton.question;
+            followupQuestion.questions = conversation.question;
             
-            Debug.Log("We go to question! " + conversaiton.question);
-            if (OnEndtoQuestion != null) //we might move this inside each ending type
+            //Debug.Log("QUESTION TIME! ");
+            if (OnEndtoQuestion != null) 
             {
                 OnEndtoQuestion(this);
-            }
-            //we actually have the follow-up question data here
-
-            //make change to all global parameters that need to be changed before the question (activate quest X, change NPC state, etc)
+            }            
         }
 
-        if (conversaiton.endingType == "nextDialogue") //How to check with enum instead of string???
+        if (ending == Conversation.EndingType.nextDialogue) //nextDialogue follow-up
         {
-            blockNumber = conversaiton.blockNumber;
-            conversaiton = conversaiton.nextConversation;
-            Debug.Log("We go to next dialog!");
-            if (OnEndtoDialogue != null) //we might move this inside each ending type
-            {
-                OnEndtoDialogue(this);
-            }
-            //we actually have the follow-up dialogue block data here also
-            StartConversation();
-
-
-            //make change to all global parameters (activate quest X, change NPC state, etc)
+            //WE CAN ONLY PASS TO THE NEXT DIALOGUE BLOCK HERE, NOTHING ELSE
+            conversation = conversation.nextConversation;
+            //Debug.Log("CONVERSATION CONTINUES! ");
+            StartConversation();            
         }
 
-        if (conversaiton.endingType == "noFollowup") //How to check with enum instead of string???
+        if (ending == Conversation.EndingType.noFollowup) //Back to movement
         {
-            blockNumber = conversaiton.blockNumber;
-            Debug.Log("Nothing happen on the foreground!");
-            if (OnEndtoNothing != null) //we might move this inside each ending type
+            blockNumber = conversation.blockNumber;
+            //Debug.Log("CONVERSATION ENDS! ");
+
+            if (conversation.isQuestCheck)
             {
-                OnEndtoNothing(this);
+                if (OnQuestCheck != null)
+                {
+                    OnQuestCheck(this);
+                }
             }
-            //make change to all global parameters if needed, but this endingType meant for random NPC line that have no follow-up (like offended npcs)
-            //ANNOUNCE TO ENABLE PLAYER INPUT ON PLAYER AND NPC HERE
+
+            if (conversation.isLeveling) //Announce to Level up the room if the conversation isLeveling true
+            {
+                if(conversation.isQuest)
+                {
+                    if (OnQuestStart != null)
+                    {
+                        OnQuestStart(this);
+                    }
+                }
+
+                
+
+                if(OnEndLevelUp != null)
+                {
+                    OnEndLevelUp(this); 
+                }
+            }
+
+            if (OnEndtoNothing != null)
+            {
+                OnEndtoNothing(this); //Annaounce NPC and Player input here
+            }
         }
-
-        //last thing to execute on EndConversation()
-
-
-        //follow-up command here
-        //OnEndDialogue event announce here
-
     }
 
     void DisplayLine()
     {
-        Line line = conversaiton.lines[activeLineIndex];
+        Line line = conversation.lines[activeLineIndex];
         Character character = line.character;
 
         if (speakerUILeft.SpeakerIs(character))
@@ -169,7 +177,13 @@ public class DialogueDisplay : MonoBehaviour
         activeSpeakerUI.Dialogue = text;
         activeSpeakerUI.Show();
         inactiveSpeakerUI.Hide();
-
     }
 
+    private void UpdateQuestStatus() //Added by Drew
+    {
+        if (conversation.isQuest == true && QuestStatus != null)
+        {
+            QuestStatus(conversation.isQuest);
+        }
+    }
 }

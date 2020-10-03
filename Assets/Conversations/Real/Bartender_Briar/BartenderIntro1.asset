@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0109d7e372c78ec4b8b8e34335b9c88a, type: 3}
+  m_Name: BartenderIntro1
+  m_EditorClassIdentifier: 
+  blockNumber: 0
+  isQuest: 0
+  isLeveling: 1
+  endingCon: 1
+  question: {fileID: 0}
+  nextConversation: {fileID: 11400000, guid: af6ebe7209175bc4c8c094e35d771b1d, type: 2}
+  speakerLeft: {fileID: 11400000, guid: c0212193a5e5c2043a3c4ad61b9dba7b, type: 2}
+  speakerRight: {fileID: 11400000, guid: 60d77d123cab0f04ca5c0b91f6ac0ba1, type: 2}
+  lines:
+  - character: {fileID: 11400000, guid: 60d77d123cab0f04ca5c0b91f6ac0ba1, type: 2}
+    text: Hai, apa kabar?
+  - character: {fileID: 11400000, guid: 60d77d123cab0f04ca5c0b91f6ac0ba1, type: 2}
+    text: Selamat datang di kedaiku!
+  - character: {fileID: 11400000, guid: c0212193a5e5c2043a3c4ad61b9dba7b, type: 2}
+    text: Sorry, I can't understand you...
+  - character: {fileID: 11400000, guid: 60d77d123cab0f04ca5c0b91f6ac0ba1, type: 2}
+    text: Eh, I know that language!
+  - character: {fileID: 11400000, guid: 60d77d123cab0f04ca5c0b91f6ac0ba1, type: 2}
+    text: My appologies! I didn't realize you're not from around here.
+  - character: {fileID: 11400000, guid: c0212193a5e5c2043a3c4ad61b9dba7b, type: 2}
+    text: 'Yes, I just arrived this morning. '
+  - character: {fileID: 11400000, guid: c0212193a5e5c2043a3c4ad61b9dba7b, type: 2}
+    text: I feel a bit lost...
+  - character: {fileID: 11400000, guid: c0212193a5e5c2043a3c4ad61b9dba7b, type: 2}
+    text: I can't understand everyone and it seems like they can't understand me.
+  - character: {fileID: 11400000, guid: 60d77d123cab0f04ca5c0b91f6ac0ba1, type: 2}
+    text: Hmm, that's unfortunate!
+  - character: {fileID: 11400000, guid: 60d77d123cab0f04ca5c0b91f6ac0ba1, type: 2}
+    text: Don't worry, I can teach you some words!
+  - character: {fileID: 11400000, guid: c0212193a5e5c2043a3c4ad61b9dba7b, type: 2}
+    text: That would be great!
+  - character: {fileID: 11400000, guid: 60d77d123cab0f04ca5c0b91f6ac0ba1, type: 2}
+    text: Alright, let's start with the basics.
