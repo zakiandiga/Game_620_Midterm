@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09df311821553024f85ec9932f8d4c05, type: 3}
+  m_Name: ElfQ3
+  m_EditorClassIdentifier: 
+  questionNumber: 0
+  fact: Ah, selamat datang! Ini adalah kota yang indah.
+  correctAnswer: Siapa hamamu?
+  wrongAnswer: Siapa namamu?
+  correctDestinationBlock: {fileID: 11400000, guid: 969c443e5400f7c4caa13265e76201d8,
+    type: 2}
+  wrongDestinationBlock: {fileID: 11400000, guid: 53646310a9b2b514a801bb63b3ef6db9,
+    type: 2}

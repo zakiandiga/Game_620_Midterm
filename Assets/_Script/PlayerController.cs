@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
     private void EnableMovement(DialogueDisplay d)
     {
         playerMode = PlayerMode.walking;
-        Debug.Log(gameObject.name + "Read notif from the dialogue display, CONTROL ENABLED");
+        //Debug.Log(gameObject.name + "Read notif from the dialogue display, CONTROL ENABLED");
         input.enabled = true;
     }
 

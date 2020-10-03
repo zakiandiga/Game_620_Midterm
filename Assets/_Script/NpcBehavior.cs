@@ -11,14 +11,18 @@ public class NpcBehavior : MonoBehaviour
     GameObject dialogue;
     DialogueDisplay dialogueDisplay;
     DialogueHolder dialogueHolder;
+    QuestHolder questHolder;
 
     private NPCMode npcMode = NPCMode.notTalking;
 
     [SerializeField] int myLevel = 0;
+    [SerializeField] int myQuestLevel = 0;
     int dialogueHolderIndex = 0;
+    int questHolderIndex = 0;
+    bool onQuest = false;
 
     public static event Action<NpcBehavior> OnTalkStart; //Announce if the NPC innitiate a talk at Talk()
-
+    public static event Action<NpcBehavior> OnQuestCheck;
     void Start()
     {
         dialogueHolderIndex = myLevel;
@@ -28,12 +32,37 @@ public class NpcBehavior : MonoBehaviour
         dialogue = GameObject.Find("Dialogue");
         dialogueDisplay = dialogue.GetComponent<DialogueDisplay>();
         dialogueHolder = GetComponent<DialogueHolder>();
-        dialogueHolder = GetComponent<DialogueHolder>();
+        questHolder = GetComponent<QuestHolder>();
         input = GetComponent<PlayerInput>();
 
         DialogueDisplay.OnStartConversation += DisableInput; //Observe if the dialogue ends, enable input
         DialogueDisplay.OnEndtoNothing += EnableInput; //Observe if the dialogue starts, disable input
         RoomState.OnRoomLevelUp += NpcLevelup; //Observe if the room level up
+        RoomState.OnQuesting += QuestSetup;
+        DialogueDisplay.OnQuestCheck += CheckQuest;
+    }
+
+    private void QuestSetup(RoomState r)
+    {
+        questHolderIndex = 0;
+        onQuest = true;
+    }
+
+    private void CheckQuest(DialogueDisplay d) //Cheat
+    {
+        Debug.Log("Observed OnQuestCheck");
+        string whoTalk = dialogueDisplay.conversation.convoOwner;
+        Debug.Log(whoTalk);
+        if (this.gameObject.name == whoTalk)
+        {
+            this.myQuestLevel += 1;
+            Debug.Log(this.gameObject.name + " Level Up Quest");
+            this.questHolderIndex += 1;
+            if(OnQuestCheck != null)
+            {
+                OnQuestCheck(this);
+            }
+        }
     }
 
     void OnTriggerEnter2D (Collider2D col)
@@ -63,11 +92,20 @@ public class NpcBehavior : MonoBehaviour
         {
             OnTalkStart(this);           
         }
+        
+        if (!onQuest)
+        {
+            dialogueDisplay.conversation = dialogueHolder.conversation[dialogueHolderIndex];
+            dialogueDisplay.StartConversation();
+        }
 
-        Debug.Log(dialogueHolderIndex);
-        dialogueDisplay.conversaiton = dialogueHolder.conversation[dialogueHolderIndex];
-        dialogueDisplay.StartConversation();
-        Debug.Log(dialogueHolderIndex);
+        if (onQuest)
+        {
+            dialogueDisplay.conversation = questHolder.questConversation[questHolderIndex];
+            dialogueDisplay.StartConversation();
+        }
+        
+        //Debug.Log(dialogueHolderIndex);
         input.enabled = false;        
     }
 
@@ -81,6 +119,12 @@ public class NpcBehavior : MonoBehaviour
     private void EnableInput(DialogueDisplay d)
     {
         //Debug.Log(gameObject.name + " read notif from dialogue manager, we can initiate talk again");
+        Invoke("EnablingInput", 1); //cheat the input enable
+        
+    }
+
+    private void EnablingInput()
+    {
         input.enabled = true;
     }
 
@@ -95,6 +139,14 @@ public class NpcBehavior : MonoBehaviour
     private void NpcLevelup(RoomState r)
     {
         myLevel += 1;
+        OnMyLevelup();
+    }
+
+    private void OnMyLevelup()
+    {
+        //For now, just add the dialogueHolderIndex
+        dialogueHolderIndex += 1;
+
     }
 
     public enum NPCMode

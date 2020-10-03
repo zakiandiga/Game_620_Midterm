@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09df311821553024f85ec9932f8d4c05, type: 3}
+  m_Name: SoldierQ1
+  m_EditorClassIdentifier: 
+  questionNumber: 0
+  fact: What do you say?
+  correctAnswer: Hai!
+  wrongAnswer: Bego!
+  correctDestinationBlock: {fileID: 11400000, guid: 2ed2aaf84a75b8d4195a0f49d39cf50a,
+    type: 2}
+  wrongDestinationBlock: {fileID: 11400000, guid: 20cb4ddadce519c499bfbfcd2ba92f18,
+    type: 2}

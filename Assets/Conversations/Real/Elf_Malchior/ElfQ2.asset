@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09df311821553024f85ec9932f8d4c05, type: 3}
+  m_Name: ElfQ2
+  m_EditorClassIdentifier: 
+  questionNumber: 0
+  fact: Hai!
+  correctAnswer: Aku baru di sini!
+  wrongAnswer: Aku biru di sini!
+  correctDestinationBlock: {fileID: 11400000, guid: e0b0e8002833253429a7a5d989d63aff,
+    type: 2}
+  wrongDestinationBlock: {fileID: 11400000, guid: 5af5bd0067eca0645913881722118170,
+    type: 2}

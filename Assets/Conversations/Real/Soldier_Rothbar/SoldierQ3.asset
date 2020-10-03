@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09df311821553024f85ec9932f8d4c05, type: 3}
+  m_Name: SoldierQ3
+  m_EditorClassIdentifier: 
+  questionNumber: 0
+  fact: 'Ask what their name is! '
+  correctAnswer: Siapa karmamu?
+  wrongAnswer: Siapa namamu?
+  correctDestinationBlock: {fileID: 11400000, guid: 742e2d5f9f48c624a8bf615cc363650e,
+    type: 2}
+  wrongDestinationBlock: {fileID: 11400000, guid: e32948f0706926d4893886b147dfe534,
+    type: 2}

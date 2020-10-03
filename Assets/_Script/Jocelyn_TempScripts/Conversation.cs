@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,9 +15,12 @@ public struct Line
 [CreateAssetMenu(fileName = "New Conversation", menuName = "Conversation")]
 public class Conversation : ScriptableObject
 {
+
     public int blockNumber;
+    public string convoOwner; //Cheat
     public bool isQuest;
     public bool isLeveling;
+    public bool isQuestCheck; //Cheat
     public EndingType endingCon;
     public enum EndingType { question, nextDialogue, noFollowup }
     public Question question;
@@ -26,5 +30,4 @@ public class Conversation : ScriptableObject
     public Character speakerRight;
     public Line[] lines;
 
-    
 }

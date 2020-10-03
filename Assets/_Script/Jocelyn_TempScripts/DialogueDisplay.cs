@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem; //Input System
 using System;
-//using System.CodeDom;
 
 public class DialogueDisplay : MonoBehaviour
 {
     //PlayerInput input; //Input System
     public GameObject nextButton;
+    public GameObject dialogue;
 
-    public Conversation conversaiton;
+    public Conversation conversation;
     public int blockNumber; //get this number from Conversation
 
     public GameObject speakerLeft;
@@ -28,42 +28,58 @@ public class DialogueDisplay : MonoBehaviour
     public static event Action<DialogueDisplay> OnEndtoNothing;
     public static event Action<DialogueDisplay> OnStartConversation;
     public static event Action<DialogueDisplay> OnEndLevelUp;
+    public static event Action<DialogueDisplay> OnAdvanceConvo;
+    public static event Action<DialogueDisplay> OnQuestStart;
+    public static event Action<DialogueDisplay> OnQuestCheck;
+
+    public static event Action<bool> QuestStatus; //Added by Drew
+
+    //public ButtonControl buttonControl;
 
     void Start()
     {
         followupQuestion = questionManager.GetComponent<QuestionManager>();
 
         speakerUILeft = speakerLeft.GetComponent<SpeakerUI>();
-        speakerUIRight = speakerRight.GetComponent<SpeakerUI>();
-
-        speakerUILeft.Speaker = conversaiton.speakerLeft;
-        speakerUIRight.Speaker = conversaiton.speakerRight;
+        speakerUIRight = speakerRight.GetComponent<SpeakerUI>();        
     }
     
 
     
     public void StartConversation() //CALL THIS FROM THE NPC (Observe)
-    {        
-        Debug.Log("StartConversation() executed");
+    {   
         if (OnStartConversation != null)
         {
             OnStartConversation(this);
         }
-        //activeLineIndex = 0;      
-        
-        nextButton.SetActive(true);      
+        activeLineIndex = 0; //Set the current/assigned dialogue block index to 0
+        //SetDialogue();
+
+        speakerUILeft.Speaker = conversation.speakerLeft; //Set the speaker UI
+        speakerUIRight.Speaker = conversation.speakerRight; //Set the speaker UI
+
+
+        nextButton.SetActive(true);
+        if (OnAdvanceConvo != null)
+        {
+            OnAdvanceConvo(this);
+        }
         DisplayLine();
         activeLineIndex += 1;       
     }
     
 
-    public void AdvanceConversation() //might be private?
+    public void AdvanceConversation()
     {
-        Debug.Log("AdvanceConversation() executed");
-        if (activeLineIndex < conversaiton.lines.Length)
+        if (activeLineIndex < conversation.lines.Length)
         {
             DisplayLine();
             activeLineIndex += 1;
+            if(OnAdvanceConvo != null)
+            {
+                OnAdvanceConvo(this);
+            }
+
         }
         else
         {            
@@ -76,18 +92,17 @@ public class DialogueDisplay : MonoBehaviour
     void EndConversation()
     {
         speakerLeft.SetActive(false);
-        speakerRight.SetActive(false);
-        activeLineIndex = 0;
+        speakerRight.SetActive(false);        
         nextButton.SetActive(false);
-        var ending = conversaiton.endingCon;
-        Debug.Log(ending);
+        var ending = conversation.endingCon;
+        //Debug.Log(ending);
 
         //THE LINES FOR THE FOLLOW UP HANDLING        
         if (ending == Conversation.EndingType.question) //question follow-up
         {
-            followupQuestion.questions = conversaiton.question;
+            followupQuestion.questions = conversation.question;
             
-            Debug.Log("QUESTION TIME! ");
+            //Debug.Log("QUESTION TIME! ");
             if (OnEndtoQuestion != null) 
             {
                 OnEndtoQuestion(this);
@@ -97,17 +112,36 @@ public class DialogueDisplay : MonoBehaviour
         if (ending == Conversation.EndingType.nextDialogue) //nextDialogue follow-up
         {
             //WE CAN ONLY PASS TO THE NEXT DIALOGUE BLOCK HERE, NOTHING ELSE
-            conversaiton = conversaiton.nextConversation;
-            Debug.Log("CONVERSATION CONTINUES! ");
+            conversation = conversation.nextConversation;
+            //Debug.Log("CONVERSATION CONTINUES! ");
             StartConversation();            
         }
 
         if (ending == Conversation.EndingType.noFollowup) //Back to movement
         {
-            blockNumber = conversaiton.blockNumber;
-            Debug.Log("CONVERSATION ENDS! ");
-            if (conversaiton.isLeveling) //Announce to Level up the room if the conversation isLeveling true
+            blockNumber = conversation.blockNumber;
+            //Debug.Log("CONVERSATION ENDS! ");
+
+            if (conversation.isQuestCheck)
             {
+                if (OnQuestCheck != null)
+                {
+                    OnQuestCheck(this);
+                }
+            }
+
+            if (conversation.isLeveling) //Announce to Level up the room if the conversation isLeveling true
+            {
+                if(conversation.isQuest)
+                {
+                    if (OnQuestStart != null)
+                    {
+                        OnQuestStart(this);
+                    }
+                }
+
+                
+
                 if(OnEndLevelUp != null)
                 {
                     OnEndLevelUp(this); 
@@ -123,7 +157,7 @@ public class DialogueDisplay : MonoBehaviour
 
     void DisplayLine()
     {
-        Line line = conversaiton.lines[activeLineIndex];
+        Line line = conversation.lines[activeLineIndex];
         Character character = line.character;
 
         if (speakerUILeft.SpeakerIs(character))
@@ -143,5 +177,13 @@ public class DialogueDisplay : MonoBehaviour
         activeSpeakerUI.Dialogue = text;
         activeSpeakerUI.Show();
         inactiveSpeakerUI.Hide();
+    }
+
+    private void UpdateQuestStatus() //Added by Drew
+    {
+        if (conversation.isQuest == true && QuestStatus != null)
+        {
+            QuestStatus(conversation.isQuest);
+        }
     }
 }
