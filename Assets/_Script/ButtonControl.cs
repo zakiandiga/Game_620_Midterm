@@ -49,6 +49,12 @@ public class ButtonControl : MonoBehaviour
 
     private void OnQuestionStart(QuestionManager q)
     {
+        Invoke("QuestionStart", 0.8f);
+
+    }
+
+    private void QuestionStart()
+    {
         input.enabled = true;
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(correct);

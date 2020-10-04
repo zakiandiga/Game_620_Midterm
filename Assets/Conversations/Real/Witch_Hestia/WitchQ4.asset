@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questionNumber: 0
   fact: Aku Hestia sang Penyihir!
-  correctAnswer: Nama yang unik!
+  correctAnswer: Nama yang indah!
   wrongAnswer: Nama yang burik!
   correctDestinationBlock: {fileID: 11400000, guid: 9afd1143487c7f943968768dbfadd0e9,
     type: 2}

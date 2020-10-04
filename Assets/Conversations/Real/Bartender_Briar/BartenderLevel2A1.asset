@@ -10,11 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0109d7e372c78ec4b8b8e34335b9c88a, type: 3}
-  m_Name: BartenderLevel2
+  m_Name: BartenderLevel2A1
   m_EditorClassIdentifier: 
   blockNumber: 0
+  convoOwner: 
   isQuest: 0
   isLeveling: 0
+  isQuestCheck: 0
+  isOffending: 0
+  isGoodEnding: 1
+  isBadEnding: 0
   endingCon: 2
   question: {fileID: 0}
   nextConversation: {fileID: 0}
@@ -22,12 +27,18 @@ MonoBehaviour:
   speakerRight: {fileID: 11400000, guid: 60d77d123cab0f04ca5c0b91f6ac0ba1, type: 2}
   lines:
   - character: {fileID: 11400000, guid: 60d77d123cab0f04ca5c0b91f6ac0ba1, type: 2}
-    text: '"Hai", is like hello. We use that to greet people.'
+    text: So, did you learn people's name?
+  - character: {fileID: 11400000, guid: c0212193a5e5c2043a3c4ad61b9dba7b, type: 2}
+    text: Yes! And they are nice people!
   - character: {fileID: 11400000, guid: 60d77d123cab0f04ca5c0b91f6ac0ba1, type: 2}
-    text: '"Hai, apa kabar" is like "Hi, how are you today?"'
+    text: Of course!
   - character: {fileID: 11400000, guid: 60d77d123cab0f04ca5c0b91f6ac0ba1, type: 2}
-    text: '"Aku" is I, and "Kamu" or "Kau" is you.'
+    text: Well then. it's easy to speak our language, right?
+  - character: {fileID: 11400000, guid: c0212193a5e5c2043a3c4ad61b9dba7b, type: 2}
+    text: Well, I still have a lot to learn!
   - character: {fileID: 11400000, guid: 60d77d123cab0f04ca5c0b91f6ac0ba1, type: 2}
-    text: '"Nama" is name.'
+    text: Don't worry, you'll get there!
   - character: {fileID: 11400000, guid: 60d77d123cab0f04ca5c0b91f6ac0ba1, type: 2}
-    text: Do you remember now?
+    text: Now, please enjoy the mead! A treat for a new friend!
+  - character: {fileID: 11400000, guid: c0212193a5e5c2043a3c4ad61b9dba7b, type: 2}
+    text: Wow, thank you!

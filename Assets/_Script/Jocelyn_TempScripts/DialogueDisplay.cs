@@ -31,6 +31,9 @@ public class DialogueDisplay : MonoBehaviour
     public static event Action<DialogueDisplay> OnAdvanceConvo;
     public static event Action<DialogueDisplay> OnQuestStart;
     public static event Action<DialogueDisplay> OnQuestCheck;
+    public static event Action<DialogueDisplay> OnOffendedCheck;
+    public static event Action<DialogueDisplay> OnGoodEnding;
+    public static event Action<DialogueDisplay> OnBadEnding;
 
     public static event Action<bool> QuestStatus; //Added by Drew
 
@@ -128,7 +131,17 @@ public class DialogueDisplay : MonoBehaviour
                 {
                     OnQuestCheck(this);
                 }
+
+                if (conversation.isOffending)
+                {
+                    if (OnOffendedCheck != null)
+                    {
+                        OnOffendedCheck(this);
+                    }
+                }
             }
+
+            
 
             if (conversation.isLeveling) //Announce to Level up the room if the conversation isLeveling true
             {
@@ -151,6 +164,22 @@ public class DialogueDisplay : MonoBehaviour
             if (OnEndtoNothing != null)
             {
                 OnEndtoNothing(this); //Annaounce NPC and Player input here
+            }
+
+            if (conversation.isGoodEnding)
+            {
+                if (OnGoodEnding != null)
+                {
+                    OnGoodEnding(this);
+                }
+                    
+            }
+            if(conversation.isBadEnding)
+            {
+                if(OnBadEnding != null)
+                {
+                    OnBadEnding(this);
+                }
             }
         }
     }

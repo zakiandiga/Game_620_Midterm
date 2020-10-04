@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0109d7e372c78ec4b8b8e34335b9c88a, type: 3}
-  m_Name: SoldierIntro2B
+  m_Name: NarratorEndingBad
   m_EditorClassIdentifier: 
   blockNumber: 0
   convoOwner: 
@@ -18,11 +18,21 @@ MonoBehaviour:
   isLeveling: 0
   isQuestCheck: 0
   isOffending: 0
+  isGoodEnding: 1
+  isBadEnding: 0
   endingCon: 2
   question: {fileID: 0}
   nextConversation: {fileID: 0}
-  speakerLeft: {fileID: 11400000, guid: c0212193a5e5c2043a3c4ad61b9dba7b, type: 2}
-  speakerRight: {fileID: 11400000, guid: d185528c79faac544a3c1f4a15505c67, type: 2}
+  speakerLeft: {fileID: 11400000, guid: dc8b3de1f3370924c8bd54a8c6e3413a, type: 2}
+  speakerRight: {fileID: 11400000, guid: dc8b3de1f3370924c8bd54a8c6e3413a, type: 2}
   lines:
-  - character: {fileID: 11400000, guid: d185528c79faac544a3c1f4a15505c67, type: 2}
-    text: Ngajak berantem kau?
+  - character: {fileID: 11400000, guid: dc8b3de1f3370924c8bd54a8c6e3413a, type: 2}
+    text: 
+  - character: {fileID: 11400000, guid: dc8b3de1f3370924c8bd54a8c6e3413a, type: 2}
+    text: 
+  - character: {fileID: 0}
+    text: 
+  - character: {fileID: 0}
+    text: 
+  - character: {fileID: 0}
+    text: 

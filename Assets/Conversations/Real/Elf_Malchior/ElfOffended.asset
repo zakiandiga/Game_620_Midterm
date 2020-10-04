@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0109d7e372c78ec4b8b8e34335b9c88a, type: 3}
-  m_Name: WitchQuest5B
+  m_Name: ElfOffended
   m_EditorClassIdentifier: 
   blockNumber: 0
-  convoOwner: Witch_Hestia
+  convoOwner: 
   isQuest: 0
   isLeveling: 0
-  isQuestCheck: 1
-  isOffending: 1
+  isQuestCheck: 0
+  isOffending: 0
   endingCon: 2
   question: {fileID: 0}
   nextConversation: {fileID: 0}
   speakerLeft: {fileID: 11400000, guid: c0212193a5e5c2043a3c4ad61b9dba7b, type: 2}
-  speakerRight: {fileID: 11400000, guid: eedf9b4ba81c8504e99e07ebb482c0f8, type: 2}
+  speakerRight: {fileID: 11400000, guid: 5ed8a80a523bfb849b632d8a3b28bdb9, type: 2}
   lines:
-  - character: {fileID: 11400000, guid: eedf9b4ba81c8504e99e07ebb482c0f8, type: 2}
-    text: Ga sopan sekali kau!
+  - character: {fileID: 11400000, guid: 5ed8a80a523bfb849b632d8a3b28bdb9, type: 2}
+    text: Pergi kau!

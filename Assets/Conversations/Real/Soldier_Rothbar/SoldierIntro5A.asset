@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: SoldierIntro5A
   m_EditorClassIdentifier: 
   blockNumber: 0
-  convoOwner: 
+  convoOwner: Soldier_Rothbar
   isQuest: 0
   isLeveling: 0
   isQuestCheck: 1
+  isOffending: 0
   endingCon: 2
   question: {fileID: 0}
   nextConversation: {fileID: 0}

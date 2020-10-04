@@ -29,7 +29,7 @@ public class QuestionManager : MonoBehaviour
         dialogueDisplay = dialogue.GetComponent<DialogueDisplay>();
     }
 
-    void SetCurrentQuestion(DialogueDisplay d) //change function to get specific question
+    private void SetCurrentQuestion(DialogueDisplay d) //change function to get specific question
     {
         //Debug.Log("recieved msg from DialogueDisplay");
         int questionBlock = dialogueDisplay.blockNumber;
