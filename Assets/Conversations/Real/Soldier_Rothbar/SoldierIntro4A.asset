@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: SoldierIntro4A
   m_EditorClassIdentifier: 
   blockNumber: 0
-  convoOwner: 
+  convoOwner: Soldier_Rothbar
   isQuest: 0
   isLeveling: 0
   isQuestCheck: 0
+  isOffending: 0
+  isGoodEnding: 0
+  isBadEnding: 0
   endingCon: 0
   question: {fileID: 11400000, guid: 866cc80e9dcb4664b93819c4a6605aa1, type: 2}
   nextConversation: {fileID: 0}

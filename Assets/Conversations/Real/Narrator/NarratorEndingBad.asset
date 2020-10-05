@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0109d7e372c78ec4b8b8e34335b9c88a, type: 3}
+  m_Name: NarratorEndingBad
+  m_EditorClassIdentifier: 
+  blockNumber: 0
+  convoOwner: 
+  isQuest: 0
+  isLeveling: 0
+  isQuestCheck: 0
+  isOffending: 0
+  isGoodEnding: 1
+  isBadEnding: 0
+  endingCon: 2
+  question: {fileID: 0}
+  nextConversation: {fileID: 0}
+  speakerLeft: {fileID: 11400000, guid: dc8b3de1f3370924c8bd54a8c6e3413a, type: 2}
+  speakerRight: {fileID: 11400000, guid: dc8b3de1f3370924c8bd54a8c6e3413a, type: 2}
+  lines:
+  - character: {fileID: 11400000, guid: dc8b3de1f3370924c8bd54a8c6e3413a, type: 2}
+    text: 
+  - character: {fileID: 11400000, guid: dc8b3de1f3370924c8bd54a8c6e3413a, type: 2}
+    text: 
+  - character: {fileID: 0}
+    text: 
+  - character: {fileID: 0}
+    text: 
+  - character: {fileID: 0}
+    text: 

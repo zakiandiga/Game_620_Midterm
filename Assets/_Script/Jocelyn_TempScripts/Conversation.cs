@@ -21,6 +21,9 @@ public class Conversation : ScriptableObject
     public bool isQuest;
     public bool isLeveling;
     public bool isQuestCheck; //Cheat
+    public bool isOffending; //cheat
+    public bool isGoodEnding; //cheat
+    public bool isBadEnding; //cheat
     public EndingType endingCon;
     public enum EndingType { question, nextDialogue, noFollowup }
     public Question question;

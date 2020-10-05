@@ -9,8 +9,14 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: e8ff72216340d214fb445a1ee5f419ee
   - enabled: 1
-    path: Assets/Scenes/Zak - TavernClone.unity
+    path: Assets/Scenes/TavernScene.unity
     guid: d256edd992f39d54091aa51a70005f06
+  - enabled: 1
+    path: Assets/Scenes/GameOverGood.unity
+    guid: 18feedc827a4fbc4f9563a75caf15dda
+  - enabled: 1
+    path: Assets/Scenes/GameOverBad.unity
+    guid: 0159295b304865f489babc0f7f577cf2
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: d523980768b478c479cfdacf560e4b5a,
       type: 2}

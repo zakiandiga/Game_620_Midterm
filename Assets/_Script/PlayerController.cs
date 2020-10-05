@@ -71,4 +71,10 @@ public class PlayerController : MonoBehaviour
         idle,
         talking
     }
+
+    void OnDestroy()
+    {
+        NpcBehavior.OnTalkStart -= DisableMovement; //Observe if an NPC start a talk, disable movement
+        DialogueDisplay.OnEndtoNothing -= EnableMovement;
+    }
 }

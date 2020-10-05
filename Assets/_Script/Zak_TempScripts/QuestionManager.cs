@@ -25,11 +25,12 @@ public class QuestionManager : MonoBehaviour
 
     void Start()
     {
-        DialogueDisplay.OnEndtoQuestion += SetCurrentQuestion;
         dialogueDisplay = dialogue.GetComponent<DialogueDisplay>();
+        DialogueDisplay.OnEndtoQuestion += SetCurrentQuestion;
+
     }
 
-    void SetCurrentQuestion(DialogueDisplay d) //change function to get specific question
+    private void SetCurrentQuestion(DialogueDisplay d) //change function to get specific question
     {
         //Debug.Log("recieved msg from DialogueDisplay");
         int questionBlock = dialogueDisplay.blockNumber;
@@ -67,6 +68,13 @@ public class QuestionManager : MonoBehaviour
             OnAnswerSelected(this);
         }
     }
+
+    
+    void OnDestroy()
+    {
+        DialogueDisplay.OnEndtoQuestion -= SetCurrentQuestion;
+    }
+    
 
 
 }

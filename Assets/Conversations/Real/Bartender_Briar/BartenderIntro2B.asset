@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: BartenderIntro2B
   m_EditorClassIdentifier: 
   blockNumber: 0
+  convoOwner: 
   isQuest: 1
   isLeveling: 1
+  isQuestCheck: 0
+  isOffending: 0
   endingCon: 2
   question: {fileID: 0}
   nextConversation: {fileID: 0}
@@ -40,3 +43,19 @@ MonoBehaviour:
       thing.
   - character: {fileID: 11400000, guid: c0212193a5e5c2043a3c4ad61b9dba7b, type: 2}
     text: Alright, I'll give it a try!
+  - character: {fileID: 11400000, guid: 60d77d123cab0f04ca5c0b91f6ac0ba1, type: 2}
+    text: Oh! One more thing!
+  - character: {fileID: 11400000, guid: c0212193a5e5c2043a3c4ad61b9dba7b, type: 2}
+    text: Yes?
+  - character: {fileID: 11400000, guid: 60d77d123cab0f04ca5c0b91f6ac0ba1, type: 2}
+    text: You might want to learn this!
+  - character: {fileID: 11400000, guid: 60d77d123cab0f04ca5c0b91f6ac0ba1, type: 2}
+    text: '"Bagus" and "indah" means something good!'
+  - character: {fileID: 11400000, guid: 60d77d123cab0f04ca5c0b91f6ac0ba1, type: 2}
+    text: For now maybe it's quite difficult to tell which one to use.
+  - character: {fileID: 11400000, guid: 60d77d123cab0f04ca5c0b91f6ac0ba1, type: 2}
+    text: But at least people would understand if you try to give them a compliment!
+  - character: {fileID: 11400000, guid: c0212193a5e5c2043a3c4ad61b9dba7b, type: 2}
+    text: Ok, I'll keep that in mind.
+  - character: {fileID: 11400000, guid: 60d77d123cab0f04ca5c0b91f6ac0ba1, type: 2}
+    text: Remember to focus on what you know and good luck!

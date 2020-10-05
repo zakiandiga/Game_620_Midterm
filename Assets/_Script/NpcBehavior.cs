@@ -19,10 +19,13 @@ public class NpcBehavior : MonoBehaviour
     [SerializeField] int myQuestLevel = 0;
     int dialogueHolderIndex = 0;
     int questHolderIndex = 0;
-    bool onQuest = false;
+    bool onQuest = false;  //cheat
+    bool isOffended = false;
+    bool isQuestFail = false; //Exclusive for Briar
 
     public static event Action<NpcBehavior> OnTalkStart; //Announce if the NPC innitiate a talk at Talk()
     public static event Action<NpcBehavior> OnQuestCheck;
+
     void Start()
     {
         dialogueHolderIndex = myLevel;
@@ -39,7 +42,26 @@ public class NpcBehavior : MonoBehaviour
         DialogueDisplay.OnEndtoNothing += EnableInput; //Observe if the dialogue starts, disable input
         RoomState.OnRoomLevelUp += NpcLevelup; //Observe if the room level up
         RoomState.OnQuesting += QuestSetup;
+        RoomState.OnQuestFail += QuestFailState;
+        RoomState.OnQuestSuccess += QuestSuccess;
         DialogueDisplay.OnQuestCheck += CheckQuest;
+        DialogueDisplay.OnOffendedCheck += CheckOffended;
+    }
+
+
+
+
+    private void QuestFailState (RoomState r)
+    {
+        myLevel = 5;
+        dialogueHolderIndex = 5;
+        isQuestFail = true;
+        onQuest = false;
+    }
+
+    private void QuestSuccess(RoomState r)
+    {
+        onQuest = false;
     }
 
     private void QuestSetup(RoomState r)
@@ -62,6 +84,18 @@ public class NpcBehavior : MonoBehaviour
             {
                 OnQuestCheck(this);
             }
+        }
+    }
+
+    private void CheckOffended (DialogueDisplay d) //cheat
+    {
+        string whoTalk = dialogueDisplay.conversation.convoOwner;
+        if (this.gameObject.name == whoTalk)
+        {
+            this.isOffended = true;
+            this.questHolderIndex = 4; //cheat
+            this.dialogueHolderIndex = 4;
+
         }
     }
 
@@ -92,14 +126,26 @@ public class NpcBehavior : MonoBehaviour
         {
             OnTalkStart(this);           
         }
+
+        if (isQuestFail && this.gameObject.name == " Briar_Bartender")
+        {
+            dialogueDisplay.conversation = dialogueHolder.conversation[5]; //cheat
+            dialogueDisplay.StartConversation();
+        }
         
-        if (!onQuest)
+        if (isOffended)
+        {
+            dialogueDisplay.conversation = dialogueHolder.conversation[5]; //cheat
+            dialogueDisplay.StartConversation();
+        }
+
+        if (!onQuest && !isOffended)
         {
             dialogueDisplay.conversation = dialogueHolder.conversation[dialogueHolderIndex];
             dialogueDisplay.StartConversation();
         }
 
-        if (onQuest)
+        if (onQuest && !isOffended)
         {
             dialogueDisplay.conversation = questHolder.questConversation[questHolderIndex];
             dialogueDisplay.StartConversation();
@@ -156,5 +202,19 @@ public class NpcBehavior : MonoBehaviour
         notTalking, 
         offended
     }
+
+    
+    void OnDestroy()
+    {
+        DialogueDisplay.OnStartConversation -= DisableInput; //Observe if the dialogue ends, enable input
+        DialogueDisplay.OnEndtoNothing -= EnableInput; //Observe if the dialogue starts, disable input
+        RoomState.OnRoomLevelUp -= NpcLevelup; //Observe if the room level up
+        RoomState.OnQuesting -= QuestSetup;
+        RoomState.OnQuestFail -= QuestFailState;
+        RoomState.OnQuestSuccess -= QuestSuccess;
+        DialogueDisplay.OnQuestCheck -= CheckQuest;
+        DialogueDisplay.OnOffendedCheck -= CheckOffended;
+    }
+    
 
 }

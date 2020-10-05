@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: ElfIntro5B
   m_EditorClassIdentifier: 
   blockNumber: 0
-  convoOwner: 
+  convoOwner: Elf_Malchior
   isQuest: 0
   isLeveling: 0
-  isQuestCheck: 0
+  isQuestCheck: 1
+  isOffending: 1
   endingCon: 2
   question: {fileID: 0}
   nextConversation: {fileID: 0}
