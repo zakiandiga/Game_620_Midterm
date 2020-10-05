@@ -13,15 +13,18 @@ MonoBehaviour:
   m_Name: SoldierIntro4B
   m_EditorClassIdentifier: 
   blockNumber: 0
-  convoOwner: 
+  convoOwner: Soldier_Rothbar
   isQuest: 0
   isLeveling: 0
   isQuestCheck: 0
-  endingCon: 0
+  isOffending: 0
+  isGoodEnding: 0
+  isBadEnding: 0
+  endingCon: 2
   question: {fileID: 0}
   nextConversation: {fileID: 0}
   speakerLeft: {fileID: 11400000, guid: c0212193a5e5c2043a3c4ad61b9dba7b, type: 2}
   speakerRight: {fileID: 11400000, guid: d185528c79faac544a3c1f4a15505c67, type: 2}
   lines:
   - character: {fileID: 11400000, guid: d185528c79faac544a3c1f4a15505c67, type: 2}
-    text: eh?
+    text: Apa maksudmu?

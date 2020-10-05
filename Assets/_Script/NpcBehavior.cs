@@ -48,6 +48,9 @@ public class NpcBehavior : MonoBehaviour
         DialogueDisplay.OnOffendedCheck += CheckOffended;
     }
 
+
+
+
     private void QuestFailState (RoomState r)
     {
         myLevel = 5;
@@ -199,5 +202,19 @@ public class NpcBehavior : MonoBehaviour
         notTalking, 
         offended
     }
+
+    
+    void OnDestroy()
+    {
+        DialogueDisplay.OnStartConversation -= DisableInput; //Observe if the dialogue ends, enable input
+        DialogueDisplay.OnEndtoNothing -= EnableInput; //Observe if the dialogue starts, disable input
+        RoomState.OnRoomLevelUp -= NpcLevelup; //Observe if the room level up
+        RoomState.OnQuesting -= QuestSetup;
+        RoomState.OnQuestFail -= QuestFailState;
+        RoomState.OnQuestSuccess -= QuestSuccess;
+        DialogueDisplay.OnQuestCheck -= CheckQuest;
+        DialogueDisplay.OnOffendedCheck -= CheckOffended;
+    }
+    
 
 }

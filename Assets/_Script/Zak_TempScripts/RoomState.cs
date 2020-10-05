@@ -38,7 +38,7 @@ public class RoomState : MonoBehaviour
 
     private void LoadGoodEnding()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(2, LoadSceneMode.Single);
     }
 
     private void BadEnding(DialogueDisplay d)
@@ -49,7 +49,7 @@ public class RoomState : MonoBehaviour
 
     private void LoadBadEnding()
     {
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(3, LoadSceneMode.Single); //CHECK SCENE NUMBER!
     }
 
 
@@ -82,7 +82,7 @@ public class RoomState : MonoBehaviour
 
     private void CheckOffended (DialogueDisplay d)
     {
-        questReq -= 1;
+        //questReq -= 1;
         questPoint -= 1;
         if (questReq <= 0)
         {
@@ -135,6 +135,7 @@ public class RoomState : MonoBehaviour
         }
     }
 
+    
     void OnDestroy()
     {
         DialogueDisplay.OnEndLevelUp -= LevelUp;
@@ -144,4 +145,5 @@ public class RoomState : MonoBehaviour
         DialogueDisplay.OnBadEnding -= BadEnding;
         NpcBehavior.OnQuestCheck -= QuestCheck;
     }
+    
 }

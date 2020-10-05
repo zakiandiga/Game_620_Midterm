@@ -19,11 +19,6 @@ public class ButtonControl : MonoBehaviour
 
     void Start()
     {
-        DialogueDisplay.OnAdvanceConvo += OnDialogueStart;
-        //DialogueDisplay.OnEndtoQuestion += OnDialogueEnd;
-        DialogueDisplay.OnEndtoNothing += OnDialogueEnd;
-        QuestionManager.OnQuestionStart += OnQuestionStart;
-        QuestionManager.OnAnswerSelected += OnQuestionEnd;
         input = GetComponent<PlayerInput>();
         buttonNextLine = nextLine.GetComponent<Button>();
         buttonCorrect = correct.GetComponent<Button>();
@@ -31,7 +26,14 @@ public class ButtonControl : MonoBehaviour
 
         //    NpcBehavior.OnTalkStart += EnableButton;
         //button.onClick.AddListener(DisplayNext);
+
+        DialogueDisplay.OnAdvanceConvo += OnDialogueStart;
+        //DialogueDisplay.OnEndtoQuestion += OnDialogueEnd;
+        DialogueDisplay.OnEndtoNothing += OnDialogueEnd;
+        QuestionManager.OnQuestionStart += OnQuestionStart;
+        QuestionManager.OnAnswerSelected += OnQuestionEnd;
     }
+
 
     private void OnDialogueStart(DialogueDisplay d)
     {
@@ -71,12 +73,13 @@ public class ButtonControl : MonoBehaviour
 
     //}
 
-    void Update()
+    
+    void OnDestroy()
     {
-
-            
-
+        DialogueDisplay.OnEndtoNothing -= OnDialogueEnd;
+        QuestionManager.OnQuestionStart -= OnQuestionStart;
+        QuestionManager.OnAnswerSelected -= OnQuestionEnd;
     }
-
+    
 
 }

@@ -586,7 +586,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Congratulation!
+  m_text: Congratulations!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
@@ -1170,7 +1170,7 @@ RectTransform:
   m_GameObject: {fileID: 1489221196}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1470170708}
   m_Father: {fileID: 1620504691}
@@ -1178,7 +1178,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -110}
+  m_AnchoredPosition: {x: 0, y: -25}
   m_SizeDelta: {x: 160, y: 77.283264}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1489221198
@@ -1194,7 +1194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 4
+    m_Mode: 0
     m_SelectOnUp: {fileID: 1847491828}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -1324,6 +1324,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   start: {fileID: 1847491826}
+  controlMenu: {fileID: 0}
+  mainMenu: {fileID: 0}
+  backButton: {fileID: 0}
+  controlButton: {fileID: 0}
   anim: {fileID: 360507851}
 --- !u!114 &1620504693
 MonoBehaviour:
@@ -1374,7 +1378,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1847491827
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1408,7 +1412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 4
+    m_Mode: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 1489221198}
     m_SelectOnLeft: {fileID: 0}
@@ -1707,10 +1711,10 @@ RectTransform:
   m_Father: {fileID: 897790054}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 69}
-  m_SizeDelta: {x: 900, y: 196.01721}
+  m_AnchorMin: {x: 0.17, y: 0.45588645}
+  m_AnchorMax: {x: 0.83000004, y: 0.7587728}
+  m_AnchoredPosition: {x: 0, y: 1}
+  m_SizeDelta: {x: -6, y: 4.017212}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8576052088604420099
 MonoBehaviour:
@@ -1791,10 +1795,10 @@ RectTransform:
   m_Father: {fileID: 8576052088604420098}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.0001545}
-  m_SizeDelta: {x: 900, y: 196.0169}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: -0.00015258789}
+  m_SizeDelta: {x: 0, y: 0.016906738}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8576052088792735022
 MonoBehaviour:
@@ -1828,13 +1832,14 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'You made your first quest!
-
-    It''s not hard to learn a new language
-    isn''t it?
+  m_Text: 'You completed your first quest!
 
 
-    Thank you for playing!'
+    It''s not that hard to learn a new
+    language, is it?
+
+
+    Thank you for playing our demo!'
 --- !u!222 &8576052088792735023
 CanvasRenderer:
   m_ObjectHideFlags: 0

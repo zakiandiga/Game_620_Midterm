@@ -16,7 +16,7 @@ MonoBehaviour:
   fact: 'Ask what their name is! '
   correctAnswer: Siapa karmamu?
   wrongAnswer: Siapa namamu?
-  correctDestinationBlock: {fileID: 11400000, guid: 742e2d5f9f48c624a8bf615cc363650e,
+  correctDestinationBlock: {fileID: 11400000, guid: f2636a0412692ac4b9a0e0b970e19618,
     type: 2}
-  wrongDestinationBlock: {fileID: 11400000, guid: e32948f0706926d4893886b147dfe534,
+  wrongDestinationBlock: {fileID: 11400000, guid: f7d0461c8e1b9f441b780a659d127bdb,
     type: 2}
