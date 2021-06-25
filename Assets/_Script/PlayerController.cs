@@ -20,10 +20,20 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         input = GetComponent<PlayerInput>();
         anim = GetComponent<Animator>();
+    }
+
+    private void OnEnable()
+    {
         NpcBehavior.OnTalkStart += DisableMovement; //Observe if an NPC start a talk, disable movement
         DialogueDisplay.OnEndtoNothing += EnableMovement;
     }
-    
+
+    private void OnDisable()
+    {
+        NpcBehavior.OnTalkStart -= DisableMovement; //Observe if an NPC start a talk, disable movement
+        DialogueDisplay.OnEndtoNothing -= EnableMovement;
+    }
+
     public void MoveInput(InputAction.CallbackContext con)
     {
         if (playerMode == PlayerMode.walking) //Drew replaced "if (!isTalking)" with the PlayerMode state machine
@@ -70,11 +80,5 @@ public class PlayerController : MonoBehaviour
         walking,
         idle,
         talking
-    }
-
-    void OnDestroy()
-    {
-        NpcBehavior.OnTalkStart -= DisableMovement; //Observe if an NPC start a talk, disable movement
-        DialogueDisplay.OnEndtoNothing -= EnableMovement;
     }
 }

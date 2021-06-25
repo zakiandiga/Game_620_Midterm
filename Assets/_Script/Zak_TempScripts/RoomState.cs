@@ -19,7 +19,7 @@ public class RoomState : MonoBehaviour
     public static event Action<RoomState> OnQuestFail;
     public static event Action<RoomState> OnQuestSuccess;
 
-    void Start()
+    void OnEnable()
     {
         DialogueDisplay.OnEndLevelUp += LevelUp;
         DialogueDisplay.OnQuestStart += QuestStart;
@@ -28,6 +28,17 @@ public class RoomState : MonoBehaviour
         DialogueDisplay.OnBadEnding += BadEnding;
         NpcBehavior.OnQuestCheck += QuestCheck;
 
+    }
+
+
+    void OnDisable()
+    {
+        DialogueDisplay.OnEndLevelUp -= LevelUp;
+        DialogueDisplay.OnQuestStart -= QuestStart;
+        DialogueDisplay.OnOffendedCheck -= CheckOffended;
+        DialogueDisplay.OnGoodEnding -= GoodEnding;
+        DialogueDisplay.OnBadEnding -= BadEnding;
+        NpcBehavior.OnQuestCheck -= QuestCheck;
     }
 
     private void GoodEnding(DialogueDisplay d)
@@ -59,10 +70,7 @@ public class RoomState : MonoBehaviour
         //we can add more parameter changes here
 
         Debug.Log("Room Level = " + roomLevel);
-        if(OnRoomLevelUp != null)
-        {
-            OnRoomLevelUp(this);
-        }
+        OnRoomLevelUp?.Invoke(this);
     }
 
     private void QuestStart(DialogueDisplay d)
@@ -73,11 +81,7 @@ public class RoomState : MonoBehaviour
         //Announce
 
         isQuesting = true;
-        if(OnQuesting != null)
-        {
-            OnQuesting(this);
-        }
-
+        OnQuesting?.Invoke(this);        
     }
 
     private void CheckOffended (DialogueDisplay d)
@@ -90,10 +94,7 @@ public class RoomState : MonoBehaviour
             //we can add more parameter changes here
 
             Debug.Log("Room Level = " + roomLevel);
-            if (OnRoomLevelUp != null)
-            {
-                OnRoomLevelUp(this);
-            }
+            OnRoomLevelUp?.Invoke(this);            
         }
     }
 
@@ -105,45 +106,23 @@ public class RoomState : MonoBehaviour
         {
             isQuesting = false;
 
-            if( questPoint <= 1)
+            if(questPoint <= 1)
             {
                 roomLevel = 5;
-                if (OnQuestFail != null) //cheat
-                {
-                    OnQuestFail(this);
-                }
+                OnQuestFail?.Invoke(this);
             }
 
             if (questPoint >= 2)
             {
                 roomLevel += 1;
                 Debug.Log("Room Level = " + roomLevel);
-                if (OnRoomLevelUp != null)
-                {
-                    OnRoomLevelUp(this);
-                }
 
-                if(OnQuestSuccess != null)
-                {
-                    OnQuestSuccess(this);
-                }
-            }
-            
+                OnRoomLevelUp?.Invoke(this);
+
+                OnQuestSuccess?.Invoke(this);
+            }            
             //we can add more parameter changes here
-
             
         }
-    }
-
-    
-    void OnDestroy()
-    {
-        DialogueDisplay.OnEndLevelUp -= LevelUp;
-        DialogueDisplay.OnQuestStart -= QuestStart;
-        DialogueDisplay.OnOffendedCheck -= CheckOffended;
-        DialogueDisplay.OnGoodEnding -= GoodEnding;
-        DialogueDisplay.OnBadEnding -= BadEnding;
-        NpcBehavior.OnQuestCheck -= QuestCheck;
-    }
-    
+    }    
 }

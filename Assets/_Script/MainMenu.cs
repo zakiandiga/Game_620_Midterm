@@ -15,33 +15,69 @@ public class MainMenu : MonoBehaviour
     PlayerInput input;
 
     public GameObject controlMenu;
+    public GameObject creditsMenu;
     public GameObject mainMenu;
-    public GameObject backButton;
+    public GameObject controlBackButton; 
+    public GameObject creditsBackButton;
     public GameObject controlButton;
-
+    public GameObject creditsButton;
+    
     public Animator anim;
+
+    private MenuState menuState;
+    public enum MenuState
+    {
+        Main,
+        Control,
+        Credits
+    }
 
     void Start()
     {
         startButton = start.GetComponent<Button>();
         input = GetComponent<PlayerInput>();
+        controlMenu.SetActive(false);
+        creditsMenu.SetActive(false);
+        menuState = MenuState.Main;
+        EventSystem.current.SetSelectedGameObject(start);
     }
     
     public void ControlMenu()
     {
         controlMenu.SetActive(true);
         mainMenu.SetActive(false);
+        menuState = MenuState.Control;
         EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(backButton);
+        EventSystem.current.SetSelectedGameObject(controlBackButton);
+    }
 
+    public void CreditsMenu()
+    {
+        creditsMenu.SetActive(true);
+        mainMenu.SetActive(false);
+        menuState = MenuState.Credits;
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(creditsBackButton);
     }
 
     public void BackButton()
     {
         mainMenu.SetActive(true);
-        controlMenu.SetActive(false);
+
         EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(controlButton);
+        if(menuState == MenuState.Control)
+        {
+            controlMenu.SetActive(false);
+            EventSystem.current.SetSelectedGameObject(controlButton);
+        }
+        else if(menuState == MenuState.Credits)
+        {
+            creditsMenu.SetActive(false);
+            EventSystem.current.SetSelectedGameObject(creditsButton);
+        }
+
+        menuState = MenuState.Main;
+
     }
 
     public void StartGame()

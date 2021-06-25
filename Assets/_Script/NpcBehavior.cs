@@ -37,7 +37,10 @@ public class NpcBehavior : MonoBehaviour
         dialogueHolder = GetComponent<DialogueHolder>();
         questHolder = GetComponent<QuestHolder>();
         input = GetComponent<PlayerInput>();
+    }
 
+    private void OnEnable()
+    {
         DialogueDisplay.OnStartConversation += DisableInput; //Observe if the dialogue ends, enable input
         DialogueDisplay.OnEndtoNothing += EnableInput; //Observe if the dialogue starts, disable input
         RoomState.OnRoomLevelUp += NpcLevelup; //Observe if the room level up
@@ -48,7 +51,17 @@ public class NpcBehavior : MonoBehaviour
         DialogueDisplay.OnOffendedCheck += CheckOffended;
     }
 
-
+    void OnDisable()
+    {
+        DialogueDisplay.OnStartConversation -= DisableInput; //Observe if the dialogue ends, enable input
+        DialogueDisplay.OnEndtoNothing -= EnableInput; //Observe if the dialogue starts, disable input
+        RoomState.OnRoomLevelUp -= NpcLevelup; //Observe if the room level up
+        RoomState.OnQuesting -= QuestSetup;
+        RoomState.OnQuestFail -= QuestFailState;
+        RoomState.OnQuestSuccess -= QuestSuccess;
+        DialogueDisplay.OnQuestCheck -= CheckQuest;
+        DialogueDisplay.OnOffendedCheck -= CheckOffended;
+    }
 
 
     private void QuestFailState (RoomState r)
@@ -204,17 +217,7 @@ public class NpcBehavior : MonoBehaviour
     }
 
     
-    void OnDestroy()
-    {
-        DialogueDisplay.OnStartConversation -= DisableInput; //Observe if the dialogue ends, enable input
-        DialogueDisplay.OnEndtoNothing -= EnableInput; //Observe if the dialogue starts, disable input
-        RoomState.OnRoomLevelUp -= NpcLevelup; //Observe if the room level up
-        RoomState.OnQuesting -= QuestSetup;
-        RoomState.OnQuestFail -= QuestFailState;
-        RoomState.OnQuestSuccess -= QuestSuccess;
-        DialogueDisplay.OnQuestCheck -= CheckQuest;
-        DialogueDisplay.OnOffendedCheck -= CheckOffended;
-    }
+
     
 
 }
