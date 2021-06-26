@@ -50,23 +50,19 @@ public class DialogueDisplay : MonoBehaviour
 
     
     public void StartConversation() //CALL THIS FROM THE NPC (Observe)
-    {   
-        if (OnStartConversation != null)
-        {
-            OnStartConversation(this);
-        }
+    {
+        OnStartConversation?.Invoke(this);
+        
         activeLineIndex = 0; //Set the current/assigned dialogue block index to 0
         //SetDialogue();
 
         speakerUILeft.Speaker = conversation.speakerLeft; //Set the speaker UI
         speakerUIRight.Speaker = conversation.speakerRight; //Set the speaker UI
 
-
         nextButton.SetActive(true);
-        if (OnAdvanceConvo != null)
-        {
-            OnAdvanceConvo(this);
-        }
+        
+        OnAdvanceConvo?.Invoke(this);
+        
         DisplayLine();
         activeLineIndex += 1;       
     }
@@ -78,11 +74,8 @@ public class DialogueDisplay : MonoBehaviour
         {
             DisplayLine();
             activeLineIndex += 1;
-            if(OnAdvanceConvo != null)
-            {
-                OnAdvanceConvo(this);
-            }
 
+            OnAdvanceConvo?.Invoke(this);
         }
         else
         {            
@@ -104,12 +97,8 @@ public class DialogueDisplay : MonoBehaviour
         if (ending == Conversation.EndingType.question) //question follow-up
         {
             followupQuestion.questions = conversation.question;
-            
-            //Debug.Log("QUESTION TIME! ");
-            if (OnEndtoQuestion != null) 
-            {
-                OnEndtoQuestion(this);
-            }            
+
+            OnEndtoQuestion?.Invoke(this);           
         }
 
         if (ending == Conversation.EndingType.nextDialogue) //nextDialogue follow-up
@@ -127,60 +116,35 @@ public class DialogueDisplay : MonoBehaviour
 
             if (conversation.isQuestCheck)
             {
-                if (OnQuestCheck != null)
-                {
-                    OnQuestCheck(this);
-                }
+                OnQuestCheck?.Invoke(this);
 
                 if (conversation.isOffending)
                 {
-                    if (OnOffendedCheck != null)
-                    {
-                        OnOffendedCheck(this);
-                    }
+                    OnOffendedCheck?.Invoke(this);                    
                 }
-            }
-
-            
+            }            
 
             if (conversation.isLeveling) //Announce to Level up the room if the conversation isLeveling true
             {
                 if(conversation.isQuest)
                 {
-                    if (OnQuestStart != null)
-                    {
-                        OnQuestStart(this);
-                    }
+                    OnQuestStart?.Invoke(this);
                 }
 
-                
-
-                if(OnEndLevelUp != null)
-                {
-                    OnEndLevelUp(this); 
-                }
-            }
-
-            if (OnEndtoNothing != null)
-            {
-                OnEndtoNothing(this); //Annaounce NPC and Player input here
+                OnEndLevelUp?.Invoke(this);
             }
 
             if (conversation.isGoodEnding)
             {
-                if (OnGoodEnding != null)
-                {
-                    OnGoodEnding(this);
-                }
-                    
+                OnGoodEnding?.Invoke(this); 
             }
+
             if(conversation.isBadEnding)
             {
-                if(OnBadEnding != null)
-                {
-                    OnBadEnding(this);
-                }
+                OnBadEnding?.Invoke(this);
             }
+
+            OnEndtoNothing?.Invoke(this);
         }
     }
 

@@ -10,9 +10,19 @@ public class QuestNotificationSystem : MonoBehaviour
 
     void Start()
     {
-        questText.SetActive(false);
+        questText.SetActive(false);        
+    }
+
+    private void OnEnable()
+    {
         DialogueDisplay.QuestStatus += QuestUpdateAlert;
     }
+
+    private void OnDisable()
+    {
+        DialogueDisplay.QuestStatus -= QuestUpdateAlert;
+    }
+
 
     private void QuestUpdateAlert(bool StatusOfQuest)
     {

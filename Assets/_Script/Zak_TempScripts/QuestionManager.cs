@@ -25,9 +25,17 @@ public class QuestionManager : MonoBehaviour
 
     void Start()
     {
-        dialogueDisplay = dialogue.GetComponent<DialogueDisplay>();
-        DialogueDisplay.OnEndtoQuestion += SetCurrentQuestion;
+        dialogueDisplay = dialogue.GetComponent<DialogueDisplay>();        
+    }
 
+    private void OnEnable()
+    {
+        DialogueDisplay.OnEndtoQuestion += SetCurrentQuestion;
+    }
+
+    void OnDisable()
+    {
+        DialogueDisplay.OnEndtoQuestion -= SetCurrentQuestion;
     }
 
     private void SetCurrentQuestion(DialogueDisplay d) //change function to get specific question
@@ -70,10 +78,7 @@ public class QuestionManager : MonoBehaviour
     }
 
     
-    void OnDestroy()
-    {
-        DialogueDisplay.OnEndtoQuestion -= SetCurrentQuestion;
-    }
+
     
 
 
